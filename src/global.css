@@ -45,6 +45,8 @@
     --quote4: quotesFont4;
 
     /* theme colors */
+    --home-bg1: #171717;
+    --home-bg2:#242424;
     --fitness-bg: #1e2225;
     --fitness-bg2:#191a1c;
     --fitness-bg3:#131414;

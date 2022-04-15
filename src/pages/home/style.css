@@ -1,0 +1,164 @@
+.home-cont{
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    overflow: hidden;
+    background: var(--home-bg2);
+    font-family: var(--poppin);
+}
+
+.home-cont .main{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.home-cont .main .left-cont{
+    width: 150px;
+    max-width: 100px;
+    height: 100vh;
+    background: var(--home-bg1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+} 
+.home-cont .main .left-cont .icon{
+    font-size: 20px;
+    padding: 8px;
+    width: 100px;
+    height: 50px;
+    color: #000;
+    background: var(--fitness-comp3);
+    /* position: absolute; */
+    top: 0px;
+    left: 0px;
+    color: var(--fitness-comp);
+    cursor: pointer;
+}
+
+.home-cont .main .left-cont .bottom{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.home-cont .main .left-cont .bottom .line{
+    width: 3px;
+    height: 90px;
+    background: var(--fitness-bg);
+    border-radius: 30px;
+}
+
+
+.home-cont .main .left-cont .bottom .count{
+    width: 30px;
+    height: 30px;
+    background: var(--fitness-bg);
+    color: #777;
+    border-radius: 50%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+.home-cont .main .left-cont .bottom .count.active{
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+}
+
+.home-cont .main .right-cont{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.home-cont .main .right-cont .brand{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--fitness-comp);
+    font-weight: 500;
+}
+
+.home-cont .main .right-cont .bx-cont{
+    width: 50%;
+    height: 100vh;
+    background: var(--home-bg1);
+}
+
+.home-cont .main .right-cont .bx-cont .con{
+    position: absolute;
+    top: 100px;
+    left: 150px;
+    width: 50%;
+    height: 400px;
+    background: var(--home-bg1);
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+.home-cont .main .right-cont .bx-cont .con h1{
+    font-weight: 700;
+    color: #fff;
+}
+
+.home-cont .main .right-cont .bx-cont .con p{
+    color: var(--light3);
+    opacity: .9;
+}
+.home-cont .main .right-cont .bx-cont .con .btn{
+    padding: 10px 20px;
+    background:#000;
+    border: 2px solid var(--fitness-comp);
+    color: var(--fitness-comp);
+}
+
+.home-cont .main .right-cont .bg-image{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: var(--home-bg2);
+    /* background-image: url("../../assets//img/mockup.png");
+    background-size: contain;
+    background-position: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-repeat: no-repeat; */
+}
+
+.home-cont .main .right-cont .bx-cont img{
+    width: 250px;
+    position: absolute;
+    right: 10%;
+    top: 50px;
+    margin: 10px auto;
+}
+
+
