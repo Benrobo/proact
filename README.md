@@ -6,7 +6,7 @@
 
 <center>
 
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/benrobo/proact/main?style=for-the-badge)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/benrobo/proact/master?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/benrobo/proact?style=for-the-badge)
 ![GitHub all releases](https://img.shields.io/github/downloads/benrobo/proact/total?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/benrobo/health-tools?style=for-the-badge)
