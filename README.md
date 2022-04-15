@@ -8,8 +8,6 @@
 
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/benrobo/proact/master?style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/benrobo/proact?style=for-the-badge)
-![GitHub all releases](https://img.shields.io/github/downloads/benrobo/proact/total?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/benrobo/health-tools?style=for-the-badge)
 ![GitHub Repo stars](https://img.shields.io/github/stars/benrobo/proact?style=for-the-badge)
 ![GitHub watchers](https://img.shields.io/github/watchers/benrobo/proact?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/benrobo/proact?style=for-the-badge)
