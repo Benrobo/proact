@@ -1,0 +1,407 @@
+
+.fitness-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--fitness-bg);
+    color: var(--fitness-text);
+    font-family: var(--poppin);
+}
+
+
+
+
+
+
+/* Flashscreen */
+
+.flash-screen{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--fitness-bg);
+    color: var(--fitness-comp);  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: var(--poppin);
+}
+
+
+
+/* Onboarding */
+.onboarding-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--fitness-bg);
+    color: var(--fitness-text);
+    font-family: var(--poppin);
+}
+
+.onboarding-cont .top-head{
+    width: 100%;
+    height: 60px;
+    padding:10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: var(--fitness-fbg);
+    z-index: 1000;
+}
+
+.onboarding-cont .top-head .icon{
+    padding: 0px;
+    margin-right: 20px;
+    font-size: 25px;
+    color: var(--fitness-comp);
+}
+.onboarding-cont .top-head p{
+    margin-top: 15px;
+}
+/* Chat body */
+.onboarding-cont .chat-main{
+    position:relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    padding-bottom: 0px;
+}
+
+.onboarding-cont .chat-main .chat-body{
+    top: 0px;
+    width: 100%;
+    height: auto;
+    max-height: 80%;
+    position: relative;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.onboarding-cont .chat-main .chat-body::-webkit-scrollbar{
+    width: 5px;
+    background: var(--fitness-bg2);
+}
+
+.onboarding-cont .chat-main .chat-body::-webkit-scrollbar-thumb{
+    background: rgba(17, 183, 122, .4);
+    border-radius: 10px;
+}
+
+.onboarding-cont .chat-main .chat-body .bot-cont{
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.onboarding-cont .chat-main .chat-body .user-cont{
+    width: 100%;
+    margin-top: 10px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.onboarding-cont .chat-main .chat-body .bot-cont .bot-chat{
+    max-width: 300px;
+    position: relative;
+    left: 0px;
+    top: 10px;
+    padding: 15px 20px;
+    border-radius: 0px 10px 10px 10px;
+    background: var(--fitness-bg2);
+    color: var(--light3);
+    transition: .2s ease;
+}
+.onboarding-cont .chat-main .chat-body .user-cont .user-chat{
+    position: relative;
+    top: 0px;
+    right: 0px;
+    padding: 15px 20px;
+    border-radius: 10px 0px 10px 10px;
+    background: var(--fitness-comp2);
+    transition: .2s ease;
+}
+
+/* Botytom cont */
+.onboarding-cont .chat-main .bottom-cont{
+    position: absolute;
+    bottom:65px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.onboarding-cont .chat-main .bottom-cont .btn{
+    width: 70vmin;
+    padding: 20px 25px;
+    height: 70px;
+    background: var(--fitness-comp);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    color: #fff;
+    /* font-weight: 700; */
+    transition: .2s ease;
+    transform: scale(.90);
+    font-size: 17px;
+    font-family: var(--poppin);
+}
+.onboarding-cont .chat-main .bottom-cont .btn:hover{
+    background: var(--fitness-comp);
+    transition: .2s ease;
+    transform: scale(.95);
+}
+
+.onboarding-cont .chat-main .bottom-cont .btn .icon{
+    margin-left: 10px;
+}
+
+/* User Info */
+.user-info{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    background: rgba(0,0,0,.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 1000;
+    display:none;
+}
+
+.user-info .main{
+    width: 300px;
+    height: auto;
+    padding: 20px;
+    background: var(--fitness-bg);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius:5px;
+    transition: all .2s ease;
+    transform: translateY(500px);
+}
+
+.user-info .main.active{
+    transition: all .2s ease;
+    transform: translateY(10px);
+}
+
+.user-info .main .img{
+    width: 120px;
+}
+
+.user-info .main .inp{
+    width: 100%;
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background: var(--fitness-bg2);
+    color: #fff;
+    text-indent: 20px;
+}
+
+.user-info .main .btn{
+    width: 100%;
+    padding: 10px;
+    background: var(--fitness-comp);
+    border: 2px solid var(--fitness-comp);
+    color: #000;
+    font-weight: 600;
+    /* border-radius: 30px; */
+}
+
+
+/* Weight component */
+.weight-cont{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: relative;
+    top: 0px;
+}
+
+.weight-cont .w-head{
+    width: 100%;
+    font-size: 4vmin;
+}
+
+.weight-cont .body{
+    position: relative;
+}
+
+.weight-cont .body .inp{
+    width: 200px;
+    height: 100px;
+    margin: 10px auto;
+    text-align: center;
+    font-size: 45px;
+    background: var(--fitness-bg);
+    color: #fff;
+    border: none;
+    outline: none;
+    border: 2px solid var(--fitness-comp2);
+    border-radius: 10px;
+}
+
+.weight-cont .body .msm{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+
+/* Goal */
+.goal-cont{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: relative;
+    top: 0px;
+}
+
+.goal-cont .g-head{
+    width: 100%;
+    font-size: 4vmin;
+}
+
+.goal-cont .body{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-direction: row;
+    white-space: nowrap;
+}
+
+.goal-cont .body .bx{
+    width:150px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--fitness-bg2);
+    margin-right: 10px;
+    border-radius: 10px;
+    transform: scale(.90);
+    transition: .2s ease;
+    cursor: pointer;
+}
+
+.goal-cont .body .bx.active{
+    border: 2px solid var(--fitness-comp);
+}
+
+.goal-cont .body .bx.active > .icon{
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+}
+
+.goal-cont .body .bx .icon{
+    padding: 10px;
+    font-size: 50px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: var(--fitness-bg);
+
+}
+
+
+/* Gender */
+.gender-cont{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: relative;
+    top: 0px;
+}
+
+.gender-cont .g-head{
+    width: 100%;
+    font-size: 4vmin;
+}
+
+.gender-cont .body{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-direction: row;
+    white-space: nowrap;
+}
+
+.gender-cont .body .bx{
+    width:150px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--fitness-bg2);
+    margin-right: 10px;
+    border-radius: 10px;
+    transform: scale(.90);
+    transition: .2s ease;
+    cursor: pointer;
+}
+
+.gender-cont .body .bx.active{
+    border: 2px solid var(--fitness-comp);
+}
+
+.gender-cont .body .bx.active > .icon{
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+}
+
+.gender-cont .body .bx .icon{
+    padding: 10px;
+    font-size: 50px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: var(--fitness-bg);
+
+}
+
+

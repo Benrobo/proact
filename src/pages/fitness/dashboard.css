@@ -1,0 +1,940 @@
+
+.dashboard-cont{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    top: 0px;
+
+}
+
+.dashboard-cont .top-head{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--fitness-bg2);
+
+}
+
+.dashboard-cont .top-head .left{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+
+.dashboard-cont .top-head .left .goal{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 200px;
+}
+
+.dashboard-cont .top-head .left .goal .icon{
+    font-size: 10px;
+    color: var(--fitness-comp);
+    margin-right: 5px;
+}
+
+.dashboard-cont .top-head .left .goal span{
+    opacity: .7;
+    text-transform: capitalize;
+    font-size: 12px;
+}
+
+.dashboard-cont .top-head .left h5{
+    font-weight: 800;
+    /* color: var(--fitness-comp); */
+}
+.dashboard-cont .top-head .left p{
+    margin: 0px;
+}
+
+.dashboard-cont .top-head img{
+    width: 70px;
+    padding: 5px;
+    border-radius: 50%;
+    border: 3px solid var(--fitness-comp);
+}
+
+
+.dashboard-cont .routine-cont{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    top: 20px;
+}
+
+.dashboard-cont .routine-cont .routine-list{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+.dashboard-cont .routine-cont .routine-list li{
+    padding: 10px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.dashboard-cont .routine-cont .routine-list li.active{
+    background: var(--fitness-bg2);
+    color: var(--fitness-comp);
+}
+
+.dashboard-cont .routine-cont .routine-body{
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    overflow-y: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.dashboard-cont .routine-cont .routine-body::-webkit-scrollbar{
+    width: 3px;
+}
+
+.dashboard-cont .routine-cont .routine-body::-webkit-scrollbar-thumb{
+    background: var(--fitness-comp3);
+    border-radius: 30px;
+}
+
+.dashboard-cont .routine-cont .routine-body .routine-box{
+    width: 250px;
+    height: auto;
+    padding: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: var(--fitness-bg2);
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.dashboard-cont .routine-cont .routine-body .routine-box .img-cont{
+    width: 100%;
+    height: 150px;
+}
+.dashboard-cont .routine-cont .routine-body .routine-box .body{
+    width: 100%;
+    padding: 12px;
+}
+.dashboard-cont .routine-cont .routine-body .routine-box .body .top p{
+    margin: 1px;
+}
+.dashboard-cont .routine-cont .routine-body .routine-box .body .top span{
+    opacity: .7;
+    font-size: 13px;
+}
+.dashboard-cont .routine-cont .routine-body .routine-box .body .bottom{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--light3);
+    font-weight: 900;
+}
+
+
+/* Start Workout */
+.start-workout-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--fitness-bg);
+    z-index: 1500;
+    overflow-y: auto;
+    transform: translateY(0px);
+    transition: all .2s ease;
+}
+
+.start-workout-cont.close{
+    transform: translateY(1000px);
+    transition: all .2s ease;
+}
+
+.start-workout-cont::-webkit-scrollbar{
+    width: 3px;
+}
+
+.start-workout-cont::-webkit-scrollbar-thumb{
+    background: var(--fitness-comp3);
+    border-radius: 30px;
+}
+
+.start-workout-cont .top-head{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: flex-start;
+    justify-content:flex-start;
+    flex-direction: row;
+}
+
+.start-workout-cont .top-head .icon{
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    background: var(--fitness-bg);
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.start-workout-cont .img-cont{
+    width: 100%;
+    height: 35vh;
+    background: var(--fitness-bg3);
+}
+
+.start-workout-cont .body{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;  
+    position: relative;  
+    padding: 10px;
+}
+
+.start-workout-cont .body .top{
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+.start-workout-cont .body .middle{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background: var(--fitness-bg2);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0px auto;
+    border-radius: 10px;
+}
+.start-workout-cont .body .middle .bx{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 10px;
+}
+.start-workout-cont .body .middle .bx .icon{
+    padding: 8px;
+    font-size: 35px;
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.start-workout-cont .body .middle .bx .right h5{
+    padding: 0px;
+    margin: 0px;
+    font-weight: 600;
+}
+.start-workout-cont .body .middle .bx .right small{
+    padding: 0px;
+    margin: 0px;
+}
+
+.start-workout-cont .body .bottom{
+    width: 100%;
+    height: auto;
+}
+.start-workout-cont .body .bottom .muscle-group{
+    padding-top: 12px;
+}
+.start-workout-cont .body .bottom .muscle-group .bx{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+.start-workout-cont .body .bottom .muscle-group .group{
+    padding: 3px 12px;
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+    font-size: 12px;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.start-workout-cont .body .bottom .sets-completed{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.start-workout-cont .body .bottom .sets-completed div{
+    padding: 15px;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 50%;
+    background: var(--fitness-bg2);
+    margin-right: 10px;
+    color: var(--light3);
+    border: 2px solid var(--fitness-comp3);
+    opacity: .6;
+    font-weight: 900;
+}
+
+.start-workout-cont .body .bottom .sets-completed div.completed{
+    color: #000;
+    border: 2px solid var(--fitness-comp);
+    opacity: 1;
+    background: var(--fitness-comp);
+}
+
+.start-workout-cont .body .bottom .btn{
+    padding: 12px 20px;
+    width: 100%;
+    margin: 0px auto;
+    font-weight: 500;
+}
+.start-workout-cont .body .bottom .btn.continue{
+    background: var(--fitness-bg2);
+    border: 2px solid var(--fitness-comp);
+    color: var(--fitness-comp);
+}
+
+
+.start-workout-cont .body .bottom .btn.finished{
+    background: var(--fitness-comp);
+    color: #000;
+}
+
+/* WORKOUT LISTY */
+
+.workout-list{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--fitness-bg);
+    z-index: 500;
+}   
+
+.workout-list .top-head{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.workout-list .top-head .left{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.workout-list .top-head .left .icon{
+    padding: 5px;
+    background: var(--fitness-bg);
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.workout-list .top-head .right .btn{
+    padding: 8px 20px;
+    font-size: 15px;
+    background: var(--fitness-comp);
+}
+.workout-list .body{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 450px;
+    position: relative;
+    top: 15px;
+    left: 0px;
+    /* padding: 10px; */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.workout-list .body::-webkit-scrollbar{
+    width: 3px;
+}
+.workout-list .body::-webkit-scrollbar-thumb{
+    background: var(--fitness-comp2);
+    border-radius: 30px;
+}
+
+.workout-list .body .bx{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.workout-list .body .bx label{
+    opacity: .7;
+    font-size: 13px;
+}
+
+.workout-list .body .bx .inp{
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    background: var(--fitness-bg2);
+    border: none;
+    outline: none;
+    color: var(--light3);
+}
+
+.workout-list .body .bx .upload{
+    background: var(--fitness-bg2);
+    color: #fff;
+    padding: 12px 20px;
+    border: 2px solid var(--fitness-comp2);
+}
+
+.workout-list .body .bx .inp-cont{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+
+.workout-list .body .bx .inp-cont .bx{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.workout-list .body .bx .inp-cont .bx input{
+    width: 70px;
+    margin-right: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    background: var(--fitness-bg2);
+    border: 2px solid var(--fitness-comp2);
+    color: #fff;
+}
+
+.workout-list .body .bx .color{
+    padding: 8px 20px;
+    position: relative;
+    top: 20px;
+    background: var(--fitness-comp);
+    color: #000;
+    font-weight: 900;
+}
+
+
+
+
+/* More Workouts Container */
+.more-workouts{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--fitness-bg);
+    z-index: 500;
+}   
+
+.more-workouts .top-head{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    flex-direction: row;
+}
+
+.more-workouts .top-head .icon{
+    font-size: 25px;
+    padding: 8px;
+    border-radius: 5px;
+    background: var(--fitness-bg);
+    cursor: pointer;
+}
+
+
+.more-workouts .body{
+    width: 100%;
+    height: 100vh;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.more-workouts .body::-webkit-scrollbar{
+    width: 3px;
+}
+
+.more-workouts .body::-webkit-scrollbar-thumb{
+    background: var(--fitness-comp);
+    border-radius: 30px;
+}
+
+.more-workouts .body .space{
+    width: 100%;
+    height:200px;
+}
+
+.more-workouts .body .mw-box{
+    width: 250px;
+    height: auto;
+    max-height: 350px;
+    padding: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: var(--fitness-bg2);
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 15px;
+    cursor: pointer;
+
+}
+
+.more-workouts .body .mw-box .img-cont{
+    width: 100%;
+    height: 150vmin;
+    background: #fff;
+}
+.more-workouts .body .mw-box .body{
+    width: 100%;
+    padding: 12px;
+}
+.more-workouts .body .mw-box .body .top p{
+    margin: 1px;
+}
+.more-workouts .body .mw-box .body .top span{
+    font-size: 12px;
+    padding: 2px 12px;
+    border-radius: 3px;
+    
+}
+
+.more-workouts .body .mw-box .body .top span.beginner{
+    background: var(--fitness-blue);
+    color: #fff;
+}
+
+.more-workouts .body .mw-box .body .top span.intermediate{
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+}
+
+.more-workouts .body .mw-box .body .top span.advanced{
+    background: var(--red2);
+    color: var(--red1);
+}
+
+.more-workouts .body .mw-box .body .bottom{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 12px;
+    color: var(--light3);
+    font-weight: 900;
+}
+.more-workouts .body .mw-box .body .bottom .equipment{
+    padding: 3px 12px;
+    background: var(--dark3);
+    margin-left: 10px;
+    border-radius: 2px;
+}
+
+
+@media(min-width:300px) and (max-width: 600px) {
+    .more-workouts .body .mw-box {
+        width: 330px;
+        margin: 10px auto;
+    }
+}
+
+/* PRACTICE SECTION */
+.practice-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(0,0,0,.5);
+    z-index: 1500;
+    overflow: hidden;
+    padding: 10px;
+    transform: translateY(0px);
+    transition:all .2s ease;
+}
+
+.practice-cont.close{
+    transform: translateY(1000px);
+    transition:all .2s ease;
+}
+
+.practice-cont .practice-section{
+    width: 100%;
+    height: 100vh;
+    background: var(--fitness-bg2);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.practice-cont .practice-section .top-head{
+    width: 100%;
+    height: 60vh;
+    background: var(--light3);
+    position:relative;
+}
+
+.practice-cont .practice-section .top-head .icon{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 8px;
+    border-radius: 5px;
+    background: var(--fitness-bg);
+    cursor: pointer;
+}
+
+.practice-cont .practice-section .bottom{
+    width: 100%;
+    height: 40vh;
+    background: var(--fitness-bg3);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    margin: 0px auto;
+}
+
+.practice-cont .practice-section .bottom .head{
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.practice-cont .practice-section .bottom .head .bx{
+    width: 50%;
+    padding: 10px;
+}
+
+.practice-cont .practice-section .bottom .head .left{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.practice-cont .practice-section .bottom .head .left p,
+.practice-cont .practice-section .bottom .head .left h3{
+    margin: 0px;
+    padding: 0px;
+}
+.practice-cont .practice-section .bottom .head .left p{
+    padding: 3px 10px;
+    background: var(--fitness-bg);
+    font-size: 13px;
+    margin-top: 5px;
+    font-style: italic;
+    border-radius: 3px;
+    color: var(--light3);
+}
+
+
+.practice-cont .practice-section .bottom .head .right{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.practice-cont .practice-section .bottom .head .right span{
+    padding: 2px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.practice-cont .practice-section .bottom .head .right span.beginner{
+    background: var(--fitness-blue);
+    color: #fff;
+}
+
+.practice-cont .practice-section .bottom .head .right span.intermediate{
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+}
+
+.practice-cont .practice-section .bottom .head .right span.advanced{
+    background: var(--red2);
+    color: var(--red1);
+}
+
+.practice-cont .practice-section .bottom .head .right .btn{
+    margin-top: 10px;
+    padding: 4px 12px;
+    font-size: 13px;
+    background: var(--fitness-bg2);
+    border: 2px solid var(--fitness-comp);
+    color: var(--fitness-comp);
+}
+.practice-cont .practice-section .bottom .head .right .btn.complete{
+    background: var(--fitness-comp);
+    border: 2px solid var(--fitness-comp);
+    color:#000;
+    font-weight: 900;
+}
+
+.practice-cont .practice-section .bottom .instructions{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    text-align: start;
+    padding: 20px;
+    margin-top: 20px;
+}
+.practice-cont .practice-section .bottom .instructions .pro-bar{
+    width: 100%;
+    height: 13px;
+    background: var(--fitness-comp3);
+    margin-top: 20px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+.practice-cont .practice-section .bottom .instructions .pro-bar .p-bar{
+    width: 50%;
+    height: 100vmin;
+    background: var(--fitness-comp);
+}
+
+
+
+.achievements-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--fitness-bg);
+    z-index: 1500;
+    overflow: hidden;
+    padding: 0px;
+    transform: translateY(0px);
+    transition:all .2s ease;
+}
+
+.achievements-cont .top-head{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    flex-direction: row;
+}
+
+.achievements-cont .top-head .left p{
+    color: var(--light3);
+    font-style: italic;
+}
+
+.achievements-cont .top-head .icon{
+    font-size: 25px;
+    padding: 8px;
+    border-radius: 5px;
+    background: var(--fitness-bg);
+    cursor: pointer;
+}
+
+.achievements-cont .body{
+    width: 100%;
+    height: 100vh;
+    padding: 5px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.achievements-cont .body::-webkit-scrollbar{
+    width: 3px;
+}
+
+.achievements-cont .body::-webkit-scrollbar-thumb{
+    background: var(--fitness-comp);
+    border-radius: 30px;
+}
+
+.achievements-cont .body .bx{
+    width: 250px;
+    height: auto;
+    max-height: 300px;
+    padding: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: var(--fitness-bg2);
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.achievements-cont .body .bx .img-cont{
+    width: 100%;
+    height: 150vmin;
+    background: var(--fitness-bg2);
+}
+
+.achievements-cont .body .bx .bx-body{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    background: var(--fitness-bg3);
+    text-align: center;
+}
+
+.achievements-cont .body .bx .bx-body span{
+    padding: 8px 12px;
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+.achievements-cont .body .space{
+    width: 100%;
+    height:150px;
+}
+
+
+/* Bottom Nav */
+.bottom-nav{
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    background: var(--fitness-bg2);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+}
+
+.bottom-nav li{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    color: var(--fitness-comp2);
+    cursor: pointer;
+    opacity: .9;
+}
+
+.bottom-nav li:hover{
+    opacity: 1;
+    background: var(--fitness-comp3);
+}
+
+.bottom-nav li small{
+    /* visibility: hidden; */
+}
+
+.bottom-nav li:hover > small{
+    visibility: visible;
+}
+
+.bottom-nav li:target > small{
+    display: flex;
+}
+
+.bottom-nav li .icon{
+    padding: 10px;
+    font-size: 35px;
+}
+
+.bottom-nav li .icon.active{
+    color: var(--fitness-comp);
+    background: var(--fitness-comp3);
+    border-radius: 3px;
+    opacity: 1;
+}
+
+/* Floating add btn */
+.floating-addbtn{
+    position: absolute;
+    right: 0px;
+    bottom: 90px;
+}
+
+.floating-addbtn .icon{
+    padding: 12px;
+    font-size: 35px;
+    border-radius: 50%;
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+    transform: scale(.90);
+    transition: .2s ease;
+    cursor: pointer;
+}
+.floating-addbtn .icon:hover{
+    transform: scale(.95);
+    transition:all .2s ease;
+}
+
+

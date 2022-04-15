@@ -1,0 +1,117 @@
+.floating-bar{
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    position: fixed;
+    right: 0px;
+    top: 50px;
+    transition: .2s ease;
+    z-index: 1000;
+}
+
+.floating-bar.show{
+    right: 0px;
+    transition: .2s ease;
+}
+
+
+.floating-bar .burger{
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    color: var(--gr1);
+    background: var(--gr2);
+    padding: 6px;
+    border-radius:5px;
+    font-size: 17px;
+    cursor: pointer;
+    opacity: .7;
+    transition: .2s ease;
+    transform: scale(.90);
+ 
+}
+
+.floating-bar .burger:hover{
+    transition: .2s ease;
+    transform: scale(.95);
+    opacity: 1;
+}
+
+.floating-bar .list{
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    background: var(--dark3);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--dark2);
+}
+
+.floating-bar .list li{
+    padding: 0px;
+    margin: 0px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.floating-bar .list li .tool-tip{
+    position: absolute;
+    top: 15px;
+    right: 60px;
+    background: var(--dark2);
+    width: 125px;
+    max-width: 200px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    /* display: none; */
+    visibility: hidden;
+}
+
+.floating-bar .list li .icon{
+    font-size: 35px;
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--gr1);
+    cursor: pointer;
+    opacity: 1;
+    transition: .2s ease;
+    transform: scale(.90);
+}
+
+
+.floating-bar .list li .active{
+    color: var(--gr1);
+    background: var(--gr2);
+    opacity: 1;
+    transform: scale(.95);
+}
+
+.floating-bar .list li .icon:hover{
+    transition: .2s ease;
+    transform: scale(.95);
+    opacity: 1;
+    color: var(--gr1);
+    background: var(--gr2);
+}
+
+.floating-bar .list li .icon:hover ~ .tool-tip{
+    visibility: visible;
+}
+
+
+.floating-bar .list li .tool-tip::after{
+    content: "";
+    border-top: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid var(--dark2);
+    position: absolute;
+    right: -12px;
+    top: 12px;
+}

@@ -1,0 +1,17 @@
+.main-page{
+    width: 90vmin;
+    height: 100vh;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin: 0px auto;
+    padding: 0px;
+    color: #fff;
+    /* overflow-y: hidden; */
+}
+
+@media(min-width:300px) and (max-width: 600px) {
+    .main-page{
+        width: 100vmin;
+    }
+}

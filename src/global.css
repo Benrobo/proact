@@ -1,0 +1,76 @@
+@import url("./bootstrap.css");
+
+@font-face {
+    font-family: Poppins;
+    src: url("./Poppins-Regular.ttf");
+}
+
+@font-face {
+    font-family: quotesFont;
+    src: url("./quotes-fonts/Amsterdam-ZVGqm.ttf");
+}
+
+@font-face {
+    font-family: quotesFont2;
+    src: url("./quotes-fonts/BeautyMountainsPersonalUse-od7z.ttf");
+}
+@font-face {
+    font-family: quotesFont3;
+    src: url("./quotes-fonts/Hiddencocktails-YzOav.ttf");
+}
+@font-face {
+    font-family: quotesFont4;
+    src: url("./quotes-fonts/LemonJellyPersonalUse-dEqR.ttf");
+}
+
+
+:root{
+
+    --dark1:#06141D ;
+    --dark2:#1B2730 ;
+    --dark3:#28343E;
+    --light1:#FFFFFF;
+    --light2:#E9E9E9;
+    --light3:#ccc;
+    --gr1:#04f8af;
+    --gr2:rgb(18, 219, 159, .4);
+    --red1:#ff0000;
+    --red2:rgb(255, 0, 0,.4);
+    --yel1:rgb(255, 217, 0);
+    --yel2:rgb(255, 217, 0,.4);
+    --poppin: Poppins;
+    --quote1: quotesFont;
+    --quote2: quotesFont2;
+    --quote3: quotesFont3;
+    --quote4: quotesFont4;
+
+    /* theme colors */
+    --fitness-bg: #1e2225;
+    --fitness-bg2:#191a1c;
+    --fitness-bg3:#131414;
+    --fitness-comp: #10e697;
+    --fitness-comp2: rgba(17, 183, 122, 0.856);
+    --fitness-comp3: rgba(17, 183, 122, 0.4);
+    --fitness-text: #fff;
+    --fitness-blue: #00a2ffd7;
+}
+
+html{
+    scroll-behavior: smooth;
+    font-family:Poppins;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: var(--light1);
+}

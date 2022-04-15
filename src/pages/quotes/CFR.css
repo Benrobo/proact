@@ -1,0 +1,492 @@
+.reminders-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 900;
+    background: var(--dark2);
+    transition:.2s ease;
+    overflow-y: auto;
+}
+
+.reminders-cont::-webkit-scrollbar{
+    width: 0px;
+}
+
+.reminders-cont .top-head{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    border-radius: 0px 0px 0px 50px;
+    box-shadow: 0px 0px 10px var(--dark1);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: var(--light2);
+}
+
+.reminders-cont .top-head .icon{
+    padding: 8px;
+    font-size: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    transform: scale(.85);
+    transition: .2s ease;
+}
+
+.reminders-cont .top-head .icon:hover{
+    background: var(--dark1);
+    cursor: pointer;
+    transform: scale(.90);
+    transition: .2s ease;
+}
+
+.reminders-cont .top-head p{
+    font-size: 20px;
+    font-weight: 700;
+    padding: 0px;
+    font-family: var(--poppin);
+}
+
+
+.reminders-cont .reminder-body{
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    font-family: var(--poppin);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+}
+
+.reminders-cont .reminder-body p{
+    font-size: 2.5vmin;
+}
+
+.reminders-cont .reminder-body .time-cont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.reminders-cont .reminder-body .time-cont .bx{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.reminders-cont .reminder-body label{
+    font-size: 3vmin;
+    opacity: .7;
+}
+
+.reminders-cont .reminder-body .time-cont .bx input{
+    padding: 8px 20px;
+    width: 100%;
+    cursor: pointer;
+    background: var(--dark1);
+    color: var(--gr1);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.reminders-cont .reminder-body .quote-type{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.reminders-cont .reminder-body .quote-type .input{
+    padding: 8px 20px;
+    width: 100%;
+    cursor: pointer;
+    background: var(--dark1);
+    color: var(--gr1);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+
+.reminders-cont .reminder-body .mail-cont{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.reminders-cont .reminder-body .mail-cont  .label{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.reminders-cont .reminder-body .mail-cont  .label input{
+    margin-right: 10px;
+}
+
+.reminders-cont .reminder-body .mail-cont .inp{
+    padding: 12px 20px;
+    width: 100%;
+    background: var(--dark1);
+    color: var(--gr1);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.reminders-cont .reminder-body  .btn{
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--dark1);
+    color: var(--gr1);
+    border-radius: 30px;
+}
+
+
+
+
+/* View Reminders */
+.view-reminders{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 900;
+    background: var(--dark3);
+    transition:.2s ease;
+    overflow-y: auto;
+}
+
+.view-reminders::-webkit-scrollbar{
+    width: 0px;
+}
+
+.view-reminders .top-head{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    background: var(--dark2);
+    box-shadow: 0px 0px 10px var(--dark1);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: var(--light2);
+}
+
+.view-reminders .top-head .icon{
+    padding: 8px;
+    font-size: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    transform: scale(.85);
+    transition: .2s ease;
+}
+
+.view-reminders .top-head .icon:hover{
+    background: var(--dark1);
+    cursor: pointer;
+    transform: scale(.90);
+    transition: .2s ease;
+}
+
+.view-reminders .top-head p{
+    font-size: 20px;
+    font-weight: 700;
+    padding: 0px;
+    font-family: var(--poppin);
+}
+
+
+.view-reminders .reminder-body{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    font-family: var(--poppin);
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+}
+
+.view-reminders .reminder-body .q-card{
+    width: 250px;
+    padding: 10px;
+    background: var(--dark2);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+
+.view-reminders .reminder-body .q-card .top{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+}
+.view-reminders .reminder-body .q-card .top span{
+    opacity: .7;
+}
+.view-reminders .reminder-body .q-card .delete{
+    padding: 10px 15px;
+    background: var(--red2);
+    color: var(--red1);
+    opacity: .7;
+}
+
+.view-reminders .reminder-body .q-card .delete:hover{
+    opacity: 1;
+}
+
+
+
+/* Favorites Container */
+.fav-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 900;
+    background: var(--dark3);
+    transition:.2s ease;
+    overflow-y: auto;
+}
+
+.fav-cont::-webkit-scrollbar{
+    width: 0px;
+}
+
+.fav-cont .top-head{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    background: var(--dark2);
+    box-shadow: 0px 0px 10px var(--dark2);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: var(--light2);
+}
+.fav-cont .top-head .icon{
+    padding: 8px;
+
+    font-size: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    transform: scale(.85);
+    transition: .2s ease;
+}
+
+.fav-cont .top-head .icon:hover{
+    background: var(--dark1);
+    cursor: pointer;
+    transform: scale(.90);
+    transition: .2s ease;
+}
+
+.fav-cont .top-head p{
+    font-size: 20px;
+    font-weight: 700;
+    padding: 0px;
+    font-family: var(--poppin);
+}
+
+
+.fav-cont .fav-body{
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    font-family: var(--poppin);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    outline: none;
+    overflow: hidden;
+}
+
+.fav-cont .fav-body .f-card{
+    width:  40vmin;
+    height: 50vmin;
+    margin: 10px 10px 10px 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+}
+
+.fav-cont .fav-body .f-card .ovl{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(0,0,0,.8);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+    padding: 10px;
+}
+
+
+.fav-cont .fav-body .f-card .ovl .category{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px 20px;
+    border-radius: 1px;
+    background: var(--gr2);
+    color: var(--gr1);
+    font-size: 10px;
+}
+
+.fav-cont .fav-body .f-card .ovl .main-text .quote {
+    font-size: 17px;
+}
+
+.fav-cont .fav-body .f-card .ovl .main-text .author {
+    font-size: 15px;
+    font-style: italic;
+}
+
+@media(min-width:300px) and (max-width: 600px) {
+    .fav-cont .fav-body .f-card{
+        width: 100vmin;
+        height: 60vmin;
+    }
+    .fav-cont .fav-body .f-card .ovl .main-text h1{
+        font-size: 6vmin;
+    }
+}
+
+
+/* Favorite Modal */
+/* download quote section */
+.download-section {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100vmin;
+    height: 100vh;
+    margin: 0px auto;
+    z-index: 3000;
+    background:#000;
+}
+
+.download-section .quote-download{
+    width: 100%;
+    height: 100vh;
+    margin: 0px auto;
+    padding: 0px;
+    z-index: 4000;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.download-section .ovl{
+    width: 100%;
+    height: 100%;
+    background: rgb(0,0,0, .7);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.download-section .ovl .main-text-screen{
+    width: 70%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* background: red; */
+}
+
+
+.download-section .ovl .main-text-screen .quote{
+    font-family: var(--poppin);
+    font-size: 30px;
+}
+
+.download-section .actions{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 5000;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+}
+
+.download-section .actions .icon{
+    font-size: 3vmax;
+    padding: 10px;
+    background: var(--dark2);
+    cursor: pointer;
+    border-radius: 5px;
+    transform: scale(.85);
+    transition: .2s ease;
+}
+
+.download-section .actions .icon.close-btn{
+    background: var(--red2);
+    color: var(--red1);
+}
+
+.download-section .actions .icon.download{
+    background: var(--gr2);
+    color: var(--gr1);
+}
+
+.download-section .actions .icon:hover{
+    transform: scale(.90);
+    transition: .2s ease;
+}
+
+
+
+
+

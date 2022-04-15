@@ -1,0 +1,397 @@
+@import url('http://fonts.cdnfonts.com/css/random?styles=344');
+                
+
+.flash-screen{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    background: var(--dark3);
+}
+
+.flash-screen .clr{
+    color:var(--gr1);
+    font-weight: 900;
+}
+
+.flash-screen .bx{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: 10px auto;
+    position: relative;
+}
+
+.flash-screen .bx .icon{
+    color: var(--gr1);
+    margin: 10px;
+    margin-bottom: 10px;
+    animation: bounce 1s ease infinite;
+    transform: translateY(-20px);
+}
+
+
+@keyframes bounce {
+    0%{
+        transition: .2s ease;
+        transform: translateY(20px);
+    }
+    50%{
+        transition: .2s ease;
+        transform: translateY(-20px);
+    }
+    100%{
+        transition: .2s ease;
+        transform: translateY(20px);
+        /* transform: translateX(100px); */
+    }
+}
+
+
+
+
+
+
+
+
+/* Main Screen */
+
+.main-screen{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: var(--dark3);
+    overflow: hidden;
+}
+
+.main-screen .quote-box{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.main-screen .quote-box img{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.main-screen .quote-box .ovl{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    z-index: 500;
+    /* background: rgb(5, 83, 60, .6); */
+    background: rgb(0,0,0, .7);
+    padding: 10px;
+}
+
+.main-screen .quote-box .ovl .top{
+    display: flex;
+    align-items: flex-start;
+    font-size:6vmin;
+}
+
+
+
+.main-screen .quote-box .ovl .top .icon{
+    transform: scale(.90);
+    padding: 5px;
+    transition: .2s ease;
+    cursor: pointer;
+    border-radius: 5px;
+    color:var(--gr1);
+}
+
+.main-screen .quote-box .ovl .top .icon:hover{
+    background: var(--gr2);
+    transform: scale(.95);
+    transition: .2s ease;
+}
+
+.main-screen .quote-box .ovl .main-text-screen{
+    width: 70%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    word-wrap: break-word;
+    text-align: center;
+    margin: 0px auto;
+}
+
+
+.main-screen .quote-box .ovl .main-text-screen .quote{
+    /* font-family: 'Random', sans-serif; */
+    font-family: var(--poppin);
+    font-weight: 500;
+    font-size: 30px;
+
+}
+
+.main-screen .quote-box .ovl .main-text-screen .author{
+    font-size: 3vmin;
+    font-style: italic;
+    /* font-family:quotesFont; */
+    color: var(--light3);
+    font-weight: 300px;
+}
+
+
+.main-screen .quote-box .ovl .bottom{
+    width: 100%;
+    height: auto;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+}
+
+
+
+.main-screen .quote-box .ovl .bottom .icon{
+    font-size: 25px;
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    /* background: var(--dark2); */
+    color: var(--gr1);
+    transform: scale(.85);
+    transition: .2s ease;
+}
+
+.main-screen .quote-box .ovl .right{
+    width: auto;
+    height: auto;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    flex-direction: column;
+    position: absolute;
+    right: 0px;
+    bottom: 50px;
+}
+
+.main-screen .quote-box .ovl .right .icon{
+    font-size: 25px;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    /* background: var(--dark2); */
+    color: var(--gr1);
+    transform: scale(.85);
+    transition: .2s ease;
+}
+
+.main-screen .quote-box .ovl .right .icon.download{
+    margin-bottom: 30px;
+}
+
+
+.main-screen .quote-box .ovl .right .icon:hover,
+.main-screen .quote-box .ovl .bottom .icon:hover{
+    transform: scale(.95);
+    transition: .2s ease;
+    background: var(--gr2);
+    cursor: pointer;
+}
+
+
+/* download quote section */
+.download-section {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    z-index: 3000;
+    background:#000;
+}
+
+.download-section .quote-download{
+    width: 100%;
+    height: 100vh;
+    margin: 0px auto;
+    padding: 0px;
+    z-index: 4000;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.download-section .ovl{
+    width: 100%;
+    height: 100%;
+    background: rgb(0,0,0, .7);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.download-section .ovl .main-text-screen{
+    width: 70%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* background: red; */
+}
+
+
+.download-section .ovl .main-text-screen .quote{
+    font-family: var(--poppin);
+    font-size: 30px;
+}
+
+.download-section .actions{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 5000;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+}
+
+.download-section .actions .icon{
+    font-size: 3vmax;
+    padding: 10px;
+    background: var(--dark2);
+    cursor: pointer;
+    border-radius: 5px;
+    transform: scale(.85);
+    transition: .2s ease;
+}
+
+.download-section .actions .icon.close-btn{
+    background: var(--red2);
+    color: var(--red1);
+}
+
+.download-section .actions .icon:hover{
+    transform: scale(.90);
+    transition: .2s ease;
+}
+
+
+/* Share quiote */
+
+.share-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 500;
+    background: rgba(0,0,0,.8);
+    padding: 20px;
+    display: none;
+}
+
+.share-cont .share-main-cont{
+    width: calc(100vmin / 1.5);
+    height: auto;
+    margin:0px auto;
+    background: var(--dark2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    font-family: var(--poppin);
+    position: absolute;
+    bottom: -1000px;
+    left: 50%;
+    transform:translateX(-50%);
+    transition: .4s ease;
+}
+
+.share-cont .share-main-cont.visibility{
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform:translateX(-50%);
+    margin: 0px auto;
+    transition: .4s ease;
+}
+
+
+.share-cont .main .head{
+    width: 180px;
+    height: 180px;
+    text-align: center;
+    border-radius: 50%;
+    border: 3px solid var(--gr1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 50px;
+}
+.share-cont .main .head img{
+    width: 200px;
+    padding: 10px;
+
+}
+
+.share-cont .main h2 {
+    font-size: 30px;
+}
+.share-cont .main .btn{
+    width: 100%;
+    height: auto;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: 3px solid var(--gr1);
+    background: var(--dark1);
+    color: var(--gr1);
+    opacity: .7;
+    transition: .2s ease;
+}
+
+.share-cont .main .btn:hover{
+    opacity: 1;
+    transition: .2s ease;
+}
+
+@media(min-width:300px) and (max-width: 600px) {
+    .share-cont .main{
+        width: 100%;
+    }
+    .share-cont .main .head img{
+        width: 200px;
+    }
+}
