@@ -43,10 +43,8 @@ What makes this application standouts from the rest is that, it doesnt provide t
 ### Flexible and INteractive Onboard ChatBot 🥰
 <img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/proact.PNG">
 
-<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/fit1.PNG">
-
 ### Workouts Page 🥰
-<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/workout.PNG">
+<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/workouts.PNG">
 
 ### Achievements Page🔥
 <img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/fit3.PNG">
