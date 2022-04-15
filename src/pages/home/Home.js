@@ -6,14 +6,20 @@ import mockup from "../../assets/img/mockup.png"
 import avatar from "../../assets/img/avatar.png"
 
 function Home() {
-
     const [pageName, setPageName] = useState("home")
 
     // open sidebar
     let sidebar;
+    const validPageName = ["#home", "#features", "about"]
 
-
+    const { hash } = window.location
+    // console.log(hash);
     useEffect(() => {
+        console.log(validPageName.includes(hash));
+        if (validPageName.includes(hash) === true) {
+            setPageName(hash.replace("#", ""))
+        }
+        window.location = "#home"
     }, [])
 
     function openSidebar() {
@@ -182,9 +188,7 @@ function Section() {
             <br />
             <small>Nothing much about me 🔥.</small>
             <br />
-            <Link to="https://github.com/benrobo">
-                <button className="btn">Follow Me</button>
-            </Link>
+            <button className="btn" onClick={() => window.location = "https://github.com/benrobo"}>Follow Me</button>
         </div>
     )
 }
