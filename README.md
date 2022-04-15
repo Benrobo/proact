@@ -40,7 +40,7 @@ What makes this application standouts from the rest is that, it doesnt provide t
 ### Fitness First Page🔥
 <img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/fit1.PNG">
 
-### Flexible and INteractive Onboard ChatBot 🥰
+### Flexible and Interactive Onboard ChatBot 🥰
 <img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/proact.PNG">
 
 ### Workouts Page 🥰
