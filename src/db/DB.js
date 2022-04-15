@@ -449,7 +449,7 @@ export class FitnessDB {
         const dbInfo = {
             name: this.name,
             userInfo: {},
-            routines: [],
+            workouts: [],
             achivements: []
         }
 
@@ -499,6 +499,35 @@ export class FitnessDB {
         return this.sendData
     }
 
+    postData(columnName = "", payload = {}) {
+
+        const dbRes = this.findDb(this.name);
+        if (dbRes.error === true) {
+            return dbRes
+        }
+        const { data } = dbRes
+        // check if columnName exists before posting data
+        let colFind = data[columnName]
+
+        if (colFind === undefined) {
+            this.sendData["error"] = true;
+            this.sendData["message"] = `Failed to add workout: column name [${columnName}] doesnt exists.`
+            return this.sendData
+        }
+
+        if (Object.entries(payload).length === 0) {
+            this.sendData["error"] = true;
+            this.sendData["message"] = `Failed to add workout: payload is empty`
+            return this.sendData
+        }
+
+        colFind.push(payload)
+
+        this.sendData["error"] = false;
+        this.sendData["message"] = `Workout added successfully.`
+        return this.sendData
+    }
+
     init() {
 
         // init db creation
@@ -506,3 +535,6 @@ export class FitnessDB {
     }
 
 }
+
+
+export const FitDB = new FitnessDB()

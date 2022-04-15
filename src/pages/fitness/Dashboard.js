@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
 import DataContext from '../../context/DataContext'
-import { FitnessDB } from '../../db/DB'
+import { FitnessDB, FitDB } from '../../db/DB'
 import workoutimg from "../../assets/img/workout.png"
 import { AiTwotoneTrophy, AiFillHome, AiOutlineUser } from "react-icons/ai"
 import { FaWeightHanging } from "react-icons/fa"
 import { IoBarbellSharp } from "react-icons/io5"
 import { IoMdClose, IoMdRefresh } from "react-icons/io"
 import { BsCircleFill } from "react-icons/bs"
+import Notification from "../../helpers/notyf";
 import exerciseData from "./exercises.json"
-
 import "./dashboard.css"
+
+const notif = new Notification(3000);
+
 
 const exercisesImages = [
     "exercises/fitness.svg",
@@ -59,7 +62,6 @@ function Dashboard() {
     const [wvisi, setWVisi] = useState(false);
     const [acvisi, setAcVisi] = useState(false);
     const [mwvisi, setMWVisi] = useState(false);
-    const [pracvisi, setPracVisi] = useState(false);
 
 
     let fitnessData = localStorage.getItem("proact-fitness");
@@ -306,8 +308,6 @@ function Achievements({ setAcVisi }) {
     )
 }
 
-
-
 function StartWorkout({ setWVisi }) {
 
     const startRef = useRef()
@@ -382,9 +382,23 @@ function StartWorkout({ setWVisi }) {
     )
 }
 
-
-
 function WorkoutLists({ setWVisi }) {
+
+    const [image, setImage] = useState("")
+    const [color, setColor] = useState("")
+    const [formData, setFormData] = useState({
+        wName: "",
+        wTag: "",
+        wMuscle: "",
+        wImage: "",
+        wSets: "",
+        wReps: "",
+        wKg: ""
+    })
+
+    const fileRef = useRef()
+    const colorRef = useRef()
+
 
     const muscles = [
         "yoga",
@@ -402,6 +416,96 @@ function WorkoutLists({ setWVisi }) {
         "back"
     ]
 
+
+    // handle image
+    function handleImage(e) {
+        const { current } = fileRef;
+        current.click();
+        let file = current.files
+        const validTypes = ["png", "jpeg", "jpg", "giff"]
+        if (file.length === 0) return false;
+
+        const fileData = file[0]
+        let { type } = fileData
+        const ext = type.split("/")[1]
+
+        if (!validTypes.includes(ext)) {
+            return notif.error("Invalid image of type: " + ext);
+        }
+        let reader = new FileReader();
+        reader.readAsDataURL(fileData);
+
+        reader.onload = function () {
+            setImage(reader.result);
+        };
+    }
+
+    function handleColor() {
+        const { current } = colorRef;
+        current.click();
+
+        if (current.value === "#000000") {
+            current.value = "#10e697"
+        }
+        return setColor(current.value)
+    }
+
+    let fData = {}
+    function handleFormData(e) {
+        let { value, name } = e.target;
+        fData[name] = value
+        setFormData((prev) => ({ ...prev, ...fData }))
+    }
+
+    function AddWorkout() {
+        formData["wImage"] = image;
+        formData["wColor"] = color;
+
+        const { wImage, wColor, wName, wTag, wMuscle, wSets, wReps, wKg } = formData;
+
+        if (wName === "") {
+            return notif.error("workout name cant be empty")
+        }
+        if (wTag === "") {
+            return notif.error("workout tag cant be empty")
+        }
+        if (wMuscle === "") {
+            return notif.error("workout muscle cant be empty")
+        }
+        if (wSets === "") {
+            return notif.error("workout sets cant be empty")
+        }
+        if (wReps === "") {
+            return notif.error("workout reps cant be empty")
+        }
+        if (wKg === "") {
+            return notif.error("workout weight cant be empty")
+        }
+
+        // validate sets reps kg
+        if (parseInt(wSets) < 0) {
+            return notif.error("workout sets cant be less than 0")
+        }
+        if (parseInt(wReps) < 0) {
+            return notif.error("workout reps cant be less than 0")
+        }
+        if (parseInt(wKg) < 0) {
+            return notif.error("workout weight cant be less than 0")
+        }
+
+        return console.log(formData);
+        const payload = {
+
+        }
+
+        const result = FitDB.postData("workouts", payload)
+
+        if (result.error === true) {
+            return notif.error(result.message)
+        }
+        return notif.success("Workout added")
+    }
+
     return (
         <div className="workout-list">
             <div className="top-head">
@@ -410,23 +514,23 @@ function WorkoutLists({ setWVisi }) {
                     <p>Add Workout</p>
                 </div>
                 <div className="right">
-                    <button className="btn addWorkout">Add Workout</button>
+                    <button className="btn addWorkout" onClick={() => AddWorkout()}>Add Workout</button>
                 </div>
             </div>
             <div className="body">
                 <div className="d-flex p-0 m-0" style={{ width: "100%" }}>
                     <div className="bx mr-5" style={{ width: "100%" }}>
                         <label htmlFor="">Name</label>
-                        <input type="text" className="inp" />
+                        <input type="text" name="wName" onChange={(e) => handleFormData(e)} className="inp" />
                     </div>
                     <div className="bx" style={{ width: "100%" }}>
                         <label htmlFor="">Tag Name</label>
-                        <input type="text" className="inp" />
+                        <input type="text" name="wTag" onChange={(e) => handleFormData(e)} className="inp" />
                     </div>
                 </div>
                 <div className="bx">
                     <label htmlFor="">Muscle</label>
-                    <select name="" id="" className="inp">
+                    <select name="wMuscle" name="wMuscle" onChange={(e) => handleFormData(e)} id="" className="inp">
                         <option value=""></option>
                         {
                             muscles.map((list, i) => {
@@ -439,38 +543,40 @@ function WorkoutLists({ setWVisi }) {
                 </div>
                 <div className="bx">
                     <label htmlFor="">Photo</label>
-                    <button className="btn upload">upload</button>
-                    <input type="file" hidden className="inp" />
+                    <button className="btn upload" onClick={(e) => handleImage(e)}>upload</button>
+                    <input type="file" ref={fileRef} onChange={() => handleImage()} hidden className="inp" />
                 </div>
                 <div className="bx">
                     <label htmlFor="">Sets weight field</label>
                     <div className="inp-cont">
                         <div className="bx">
-                            <input type="number" name="" id="" />
+                            <input type="number" name="wSets" onChange={(e) => handleFormData(e)} id="" />
                             <label htmlFor="">Sets</label>
                         </div>
                         <div className="bx">
-                            <input type="number" name="" id="" />
+                            <input type="number" name="wReps" onChange={(e) => handleFormData(e)} id="" />
                             <label htmlFor="">Reps</label>
                         </div>
                         <div className="bx">
-                            <input type="number" name="" id="" />
+                            <input type="number" name="wKg" onChange={(e) => handleFormData(e)} id="" />
                             <label htmlFor="">Kg</label>
                         </div>
                     </div>
                 </div>
-                <div className="bx">
-                    <button className="btn color">Choose Color</button>
-                    <input type="color" hidden className="inp" />
+                <div className="bx color-cont">
+                    <button className="btn color" onClick={() => handleColor()}>Choose Color</button>
+                    <input type="color" ref={colorRef} onChange={() => handleColor()} hidden className="inp" />
+
+                    <div className="color-cont" style={{
+                        background: color,
+                        borderRadius: "10px"
+                    }} ></div>
                 </div>
                 <br />
             </div>
         </div>
     )
 }
-
-
-
 
 function FloatingAdd({ setWVisi }) {
 

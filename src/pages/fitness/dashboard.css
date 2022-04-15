@@ -446,6 +446,15 @@
     color: #fff;
 }
 
+
+.workout-list .body .bx.color-cont{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+}
+
 .workout-list .body .bx .color{
     padding: 8px 20px;
     position: relative;
@@ -455,6 +464,15 @@
     font-weight: 900;
 }
 
+.workout-list .body .bx .color-cont{
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 20px;
+    padding: 10px;
+    background: #000;
+    margin-top: 20px;
+}
 
 
 
