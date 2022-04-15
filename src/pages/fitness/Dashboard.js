@@ -58,6 +58,10 @@ function UUID(len = 10) {
 
 function Dashboard() {
     const [username, setUserName] = useState("")
+    const [tagName, setTagName] = useState("")
+    const [workoutExists, setWorkoutExists] = useState(false)
+    const [workoutTags, setWorkoutTags] = useState([])
+    const [workoutsData, setWorkoutsData] = useState([])
     const [hvisi, setHVisi] = useState(true);
     const [wvisi, setWVisi] = useState(false);
     const [acvisi, setAcVisi] = useState(false);
@@ -66,6 +70,63 @@ function Dashboard() {
 
     let fitnessData = localStorage.getItem("proact-fitness");
     let { userInfo } = JSON.parse(fitnessData)
+
+
+    function getWorkoutsData() {
+        let results = FitDB.getFitnessData;
+
+        if (results.error === true) {
+            return notif.error(results.message)
+        }
+        const { data } = results;
+
+        setWorkoutsData(data.workouts)
+        setWorkoutExists(true)
+
+    }
+
+    const tags = []
+    function workoutsTags() {
+        if (workoutsData.length > 0) {
+            workoutsData.map((data) => {
+                if (!tags.includes(data.wTag)) {
+                    tags.push(data.wTag)
+                }
+            });
+            setWorkoutTags(tags)
+        }
+    }
+
+    function getWorkoutByTags(e) {
+        let results = FitDB.getFitnessData;
+        const { data } = results;
+        let { tag } = e.target.dataset
+
+        if (results.error === true) {
+            return notif.error(results.message)
+        }
+
+        if (tag === "all") {
+            setTagName(tag)
+            return setWorkoutsData([...data.workouts])
+        }
+
+        if (data.workouts.length === 0) {
+            setWorkoutsData([])
+            setWorkoutExists(true)
+            return
+        }
+
+        const filtData = data.workouts.filter((data) => data.wTag === tag);
+        setWorkoutsData([...filtData])
+        // setWorkoutCounts(filtData.length)
+        setTagName(tag)
+    }
+
+    useEffect(() => {
+        getWorkoutsData()
+        workoutsTags()
+    }, [workoutExists])
 
     useEffect(() => {
         setUserName(userInfo.name);
@@ -98,49 +159,46 @@ function Dashboard() {
             </div>
             <div className="routine-cont">
                 <div className="routine-list">
-                    <li className='active'>Push Up</li>
-                    <li>Barbell</li>
+                    <li key={tagName} className={tagName === "all" ? "active" : ""} data-tag={"all"} onClick={(e) => getWorkoutByTags(e)}>
+                        All
+                    </li>
+                    {workoutTags.length === 0 ? "" : workoutTags.map((tag) => {
+                        return (
+                            <li key={tag} className={tagName === tag ? "active" : ""} data-tag={tag} onClick={(e) => getWorkoutByTags(e)}>{tag}</li>
+                        )
+                    })}
                 </div>
 
                 <div className="routine-body">
-                    <div className="routine-box" onClick={() => openStartWorkout()}>
-                        <div className="img-cont" style={{
-                            backgroundImage: `url(${workoutimg})`,
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                            backgroundPosition: "center"
-                        }}></div>
-                        <div className="body">
-                            <div className="top">
-                                <p>Alternative Stuff</p>
-                                <span>Biceps</span>
-                            </div>
-                            <div className="bottom mt-3">
-                                <span>14kg</span>
-                                <span>10reps</span>
-                                <span>4sets</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="routine-box" onClick={() => openStartWorkout()}>
-                        <div className="img-cont" style={{
-                            backgroundImage: `url(${randomImages()})`,
-                            backgroundSize: "contain",
-                            backgroundRepeat: "no-repeat",
-                            backgroundPosition: "center"
-                        }}></div>
-                        <div className="body">
-                            <div className="top">
-                                <p>Alternative Stuff</p>
-                                <span>Biceps</span>
-                            </div>
-                            <div className="bottom mt-3">
-                                <span>14kg</span>
-                                <span>10reps</span>
-                                <span>4sets</span>
-                            </div>
-                        </div>
-                    </div>
+                    {console.log(workoutsData)}
+                    {
+                        workoutsData.length === 0 ?
+                            <p>You have no workouts.</p>
+                            :
+                            workoutsData.map((data) => {
+                                return (
+                                    <div className="routine-box" data-id={data.id} key={data.id} onClick={() => openStartWorkout()}>
+                                        <div className="img-cont" style={{
+                                            backgroundImage: `url(${data.wImage})`,
+                                            backgroundSize: "contain",
+                                            backgroundRepeat: "no-repeat",
+                                            backgroundPosition: "center"
+                                        }}></div>
+                                        <div className="body">
+                                            <div className="top">
+                                                <p>{data.wName}</p>
+                                                <span>{data.wMuscle}</span>
+                                            </div>
+                                            <div className="bottom mt-3">
+                                                <span>{data.wKg} kg</span>
+                                                <span>{data.wReps} reps</span>
+                                                <span>{data.wReps} sets</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                    }
                 </div>
             </div>
 
@@ -458,7 +516,8 @@ function WorkoutLists({ setWVisi }) {
     }
 
     function AddWorkout() {
-        formData["wImage"] = image;
+        formData["id"] = UUID();
+        formData["wImage"] = image === "" ? randomImages() : image;
         formData["wColor"] = color;
 
         const { wImage, wColor, wName, wTag, wMuscle, wSets, wReps, wKg } = formData;
@@ -493,12 +552,7 @@ function WorkoutLists({ setWVisi }) {
             return notif.error("workout weight cant be less than 0")
         }
 
-        return console.log(formData);
-        const payload = {
-
-        }
-
-        const result = FitDB.postData("workouts", payload)
+        const result = FitDB.postData("workouts", formData)
 
         if (result.error === true) {
             return notif.error(result.message)

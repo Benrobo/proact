@@ -431,7 +431,7 @@ export class FitnessDB {
         this.sendData = {}
     }
 
-    get getfavorites() {
+    get getFitnessData() {
         let data = localStorage.getItem(this.name);
         this.sendData["error"] = false;
         this.sendData["message"] = "successfull";
@@ -522,6 +522,12 @@ export class FitnessDB {
         }
 
         colFind.push(payload)
+
+        const results = this.saveToDb(data);
+
+        if (results.error === true) {
+            return results
+        }
 
         this.sendData["error"] = false;
         this.sendData["message"] = `Workout added successfully.`
