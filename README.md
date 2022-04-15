@@ -36,4 +36,4 @@ This application was deployed using
 - Team Name : 
   - ## `Benrobo`
 - Team Participant.
-  - ## `Benrobo` ( enaiah ).
+  - ## `Benrobo` ( Benaiah ).
