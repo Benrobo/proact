@@ -317,3 +317,25 @@
     font-weight: 500;
     border-radius: 20px;
 }
+
+.home-cont .main .about-cont{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #fff;
+    
+}
+
+.home-cont .main .about-cont img{
+    width: 250px;
+}
+
+.home-cont .main .about-cont .btn{
+    background: var(--fitness-bg);
+    color: var(--fitness-comp);
+    border: 2px solid var(--fitness-comp);
+}

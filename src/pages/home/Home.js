@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import "./style.css"
 
 import mockup from "../../assets/img/mockup.png"
+import avatar from "../../assets/img/avatar.png"
 
 function Home() {
 
@@ -13,11 +14,11 @@ function Home() {
 
 
     useEffect(() => {
-        sidebar = document.querySelector(".home-sidebar-cont")
     }, [])
 
     function openSidebar() {
-        if (sidebar !== null) {
+        sidebar = document.querySelector(".home-sidebar-cont")
+        if (sidebar !== undefined) {
             console.log(sidebar);
             sidebar.classList.remove("close")
         }
@@ -174,8 +175,16 @@ function Features() {
 function Section() {
 
     return (
-        <div className="section-cont">
-            <h1>About</h1>
+        <div className="about-cont">
+            <img src={avatar} alt="" />
+            <br />
+            <h4>Created By <kbd>BENAIAH aka (BENROBO) 🔥</kbd> </h4>
+            <br />
+            <small>Nothing much about me 🔥.</small>
+            <br />
+            <Link to="https://github.com/benrobo">
+                <button className="btn">Follow Me</button>
+            </Link>
         </div>
     )
 }
