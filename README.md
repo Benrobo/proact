@@ -1,4 +1,21 @@
 # ProActive
+
+<img src="https://img.shields.io/bundlephobia/min/react">
+<img src="https://img.shields.io/amo/stars/dustman">
+<img src="https://img.shields.io/steam/views/100">
+
+<center>
+
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/benrobo/proact/main?style=for-the-badge)
+![GitHub contributors](https://img.shields.io/github/contributors/benrobo/proact?style=for-the-badge)
+![GitHub all releases](https://img.shields.io/github/downloads/benrobo/proact/total?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/benrobo/health-tools?style=for-the-badge)
+![GitHub Repo stars](https://img.shields.io/github/stars/benrobo/proact?style=for-the-badge)
+![GitHub watchers](https://img.shields.io/github/watchers/benrobo/proact?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/benrobo/proact?style=for-the-badge)
+
+</center>
+
 The one and only app you would ever need to stay motivated 🥰. ProAct can be classified to be a standalone `App` 😉, unique and efficient `Tools` meant to give you motivation at the right time 🔥.
 
 As the codejam theme implies `Make Everyday a Little Less Ordinary`, I was able to `translate` and `understand` this theme with an application which is meant to make the end user `Motivated`, `Active` and `Productive`.
@@ -10,6 +27,29 @@ What makes this application standouts from the rest is that, it doesnt provide t
 
 
 ### ProAct Features
+<br/>
+
+### Motivational Quotes First Page🔥
+<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/quote.PNG">
+
+### Get Daily Reminder at your inbox 🥰
+
+<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/reminder.PNG">
+
+
+### Fitness First Page🔥
+<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/fit1.PNG">
+
+### Flexible and INteractive Onboard ChatBot 🥰
+<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/proact.PNG">
+
+<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/fit1.PNG">
+
+### Workouts Page 🥰
+<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/workout.PNG">
+
+### Achievements Page🔥
+<img src="https://raw.githubusercontent.com/Benrobo/proact/master/readmeimg/fit3.PNG">
 
 
 # Tech Stacks Used
@@ -17,9 +57,18 @@ What makes this application standouts from the rest is that, it doesnt provide t
 Below are some of technologies used within this application.
 
 ## Client ( front end ) 🔥
-- [x] Javascript ( React.js )
+- [x] Javascript ( React.js ) 
+  
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+
 - [x] HTML
+
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+
 - [x] Pure CSS (no lib)
+
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+
 - [x] Notyf (providing toast notification style)
 - [x] Storage (Browser localstorage) 
 - [x] Custom Database (implemented my own custom client database to work with localstorage effectively). 
@@ -29,7 +78,8 @@ Providing these features wouldnt have been possible without my `Problem Solving 
 
 ## Deployment 
 This application was deployed using 
-- [x]  Netlify
+
+<img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" />
 
 
 ## Team
