@@ -26,7 +26,8 @@ function Home() {
                         <div className="con">
                             <h1>Making Life Less Ordinary.</h1>
                             <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor, nam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolorum ipsum, illo omnis sit labore fuga libero eligendi quibusdam illum?
+
+                                The one and only app you would ever need to stay motivated 🥰. ProAct can be classified to be a standalone `App` 😉, unique and efficient `Tools` meant to give you motivation at the right time 🔥.
                             </p>
                             <br />
                             <Link to="/dashboard">
