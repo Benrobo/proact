@@ -450,6 +450,7 @@ export class FitnessDB {
             name: this.name,
             userInfo: {},
             workouts: [],
+            completedWorkouts: [],
             achivements: []
         }
 
@@ -499,6 +500,29 @@ export class FitnessDB {
         return this.sendData
     }
 
+    findColumnName(columnName = "") {
+        if (columnName === "") {
+            this.error = true;
+            this.message = "Failed to find table data with empty name";
+            this.sendData["error"] = this.error;
+            this.sendData["message"] = this.message;
+            return this.sendData
+        }
+
+        let data = parseJson(localStorage.getItem(this.name));
+        if (data[columnName] === undefined) {
+            this.error = true;
+            this.message = `Table name '${columnName}' wasnt found in ${this.name} database `;
+            this.sendData["error"] = this.error;
+            this.sendData["message"] = this.message;
+        }
+
+        this.sendData["error"] = false;
+        this.sendData["message"] = "successfull";
+        this.sendData["data"] = data[columnName]
+        return this.sendData
+    }
+
     postData(columnName = "", payload = {}) {
 
         const dbRes = this.findDb(this.name);
@@ -531,6 +555,47 @@ export class FitnessDB {
 
         this.sendData["error"] = false;
         this.sendData["message"] = `Workout added successfully.`
+        return this.sendData
+    }
+
+    deleteById(columnName = "", id = "") {
+        if (columnName === "") {
+            this.error = true;
+            this.message = "Failed to delete table data with empty column name";
+            this.sendData["error"] = this.error;
+            this.sendData["message"] = this.message;
+            return this.sendData
+        }
+
+        let data = parseJson(localStorage.getItem(this.name));
+        if (data[columnName] === undefined) {
+            this.error = true;
+            this.message = `Table name '${columnName}' wasnt found in ${this.name} database `;
+            this.sendData["error"] = this.error;
+            this.sendData["message"] = this.message;
+        }
+
+        let colData = data[columnName];
+        let filtData = colData.filter((data) => data.id !== id);
+
+        if (filtData.length === 0) {
+            this.error = true;
+            this.message = `Failed: data doesnt exists in ${columnName} table`;
+            this.sendData["error"] = true;
+            this.sendData["message"] = this.message;
+        }
+
+        data[columnName] = filtData;
+
+        // console.log(colData);
+        const results = this.saveToDb(data)
+        if (results.error === true) {
+            return results;
+        }
+
+        this.sendData["error"] = false;
+        this.sendData["message"] = `workout deleted successfully`;
+        this.sendData["data"] = colData;
         return this.sendData
     }
 

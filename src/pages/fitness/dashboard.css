@@ -128,17 +128,21 @@
     border-radius: 5px;
     overflow: hidden;
     margin-top: 10px;
-    cursor: pointer;
     
 }
 .dashboard-cont .routine-cont .routine-body .routine-box .img-cont{
     width: 100%;
     height: 150px;
     background: #fff;
+    cursor: pointer;
+
 }
 .dashboard-cont .routine-cont .routine-body .routine-box .body{
     width: 100%;
     padding: 12px;
+}
+.dashboard-cont .routine-cont .routine-body .routine-box .body .top{
+    position: relative;
 }
 .dashboard-cont .routine-cont .routine-body .routine-box .body .top p{
     margin: 1px;
@@ -147,6 +151,16 @@
     opacity: .7;
     font-size: 13px;
 }
+
+.dashboard-cont .routine-cont .routine-body .routine-box .body .top .completed{
+    font-size: 25px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    color: var(--fitness-comp);
+    padding: 5px;
+}
+
 .dashboard-cont .routine-cont .routine-body .routine-box .body .bottom{
     width: 100%;
     display: flex;
@@ -204,9 +218,28 @@
     margin-right: 20px;
 }
 
+.start-workout-cont .top-head .start{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--fitness-comp);
+    color: #000;
+    padding: 10px 20px;
+}
+
+.start-workout-cont .top-head .stop{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #000;
+    border: 2px solid var(--fitness-comp2);
+    color: var(--fitness-comp);
+    padding: 10px 20px;
+}
+
 .start-workout-cont .img-cont{
     width: 100%;
-    height: 35vh;
+    height: 25vh;
     background: var(--fitness-bg3);
 }
 
@@ -226,7 +259,24 @@
     padding: 10px;
     font-size: 20px;
     font-weight: 500;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
+.start-workout-cont .body .top .btn{
+    padding: 5px 15px;
+    font-size: 12px;
+    background: var(--red2);
+    color: var(--red1);
+}
+
+.start-workout-cont .body .top h4{
+    padding: 10px;
+    color: var(--fitness-comp);
+    font-weight: 600;
+}
+
 .start-workout-cont .body .middle{
     width: 100%;
     height: auto;
@@ -859,6 +909,11 @@
     overflow: hidden;
     margin-top: 15px;
     cursor: pointer;
+    opacity: .4;
+}
+
+.achievements-cont .body .bx.complete{
+    opacity: 1;
 }
 
 .achievements-cont .body .bx .img-cont{
@@ -877,10 +932,17 @@
 
 .achievements-cont .body .bx .bx-body span{
     padding: 8px 12px;
-    background: var(--fitness-comp3);
-    color: var(--fitness-comp);
+    background: var(--fitness-bg);
+    color: var(--light3);
     font-size: 12px;
     border-radius: 2px;
+    opacity: .7;
+}
+
+.achievements-cont .body .bx .bx-body span.complete{
+    background: var(--fitness-comp3);
+    color: var(--fitness-comp);
+    opacity: 1;
 }
 
 .achievements-cont .body .space{

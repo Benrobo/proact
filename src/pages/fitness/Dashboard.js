@@ -3,7 +3,7 @@ import DataContext from '../../context/DataContext'
 import { FitnessDB, FitDB } from '../../db/DB'
 import workoutimg from "../../assets/img/workout.png"
 import { AiTwotoneTrophy, AiFillHome, AiOutlineUser } from "react-icons/ai"
-import { FaWeightHanging } from "react-icons/fa"
+import { FaWeightHanging, FaCheckCircle } from "react-icons/fa"
 import { IoBarbellSharp } from "react-icons/io5"
 import { IoMdClose, IoMdRefresh } from "react-icons/io"
 import { BsCircleFill } from "react-icons/bs"
@@ -62,6 +62,7 @@ function Dashboard() {
     const [workoutExists, setWorkoutExists] = useState(false)
     const [workoutTags, setWorkoutTags] = useState([])
     const [workoutsData, setWorkoutsData] = useState([])
+    const [startWorkoutData, setStartWorkoutData] = useState({})
     const [hvisi, setHVisi] = useState(true);
     const [wvisi, setWVisi] = useState(false);
     const [acvisi, setAcVisi] = useState(false);
@@ -132,14 +133,38 @@ function Dashboard() {
         setUserName(userInfo.name);
     }, [])
 
-    function openStartWorkout() {
-        let startW = document.querySelector(".start-workout-cont");
-        startW.classList.remove("close")
+    function openStartWorkout(e) {
+        let tgt = e.target.dataset;
+        if (Object.entries(tgt).length > 0) {
+            const { id } = tgt;
+            const filtData = workoutsData.filter((data) => data.id === id);
+            setStartWorkoutData(filtData[0]);
+            let startW = document.querySelector(".start-workout-cont");
+            startW.classList.remove("close")
+        }
     }
 
-    function viewNavComponents() {
+    const filteredCompletedWorkouts = []
+
+    function getCompletedWorkouts() {
+        let result = FitDB.findColumnName("completedWorkouts");
+
+        if (result.error === true) {
+            return notif.error(result.message)
+        }
+
+        let data = result.data;
+
+        if (data.length > 0) {
+            let filt = data.filter((workouts) => {
+                if (!filteredCompletedWorkouts.includes(workouts.id)) {
+                    filteredCompletedWorkouts.push(workouts.id)
+                }
+            })
+        }
 
     }
+    getCompletedWorkouts()
 
     return (
         <div className="dashboard-cont">
@@ -170,29 +195,31 @@ function Dashboard() {
                 </div>
 
                 <div className="routine-body">
-                    {console.log(workoutsData)}
+                    {/* {console.log(workoutsData)} */}
                     {
                         workoutsData.length === 0 ?
                             <p>You have no workouts.</p>
                             :
                             workoutsData.map((data) => {
                                 return (
-                                    <div className="routine-box" data-id={data.id} key={data.id} onClick={() => openStartWorkout()}>
-                                        <div className="img-cont" style={{
+                                    <div className="routine-box" key={data.id}>
+                                        <div className="img-cont" data-id={data.id} onClick={(e) => openStartWorkout(e)} style={{
                                             backgroundImage: `url(${data.wImage})`,
                                             backgroundSize: "contain",
                                             backgroundRepeat: "no-repeat",
                                             backgroundPosition: "center"
                                         }}></div>
-                                        <div className="body">
+                                        <div className="body" data-id={data.id} onClick={(e) => openStartWorkout(e)}>
                                             <div className="top">
                                                 <p>{data.wName}</p>
                                                 <span>{data.wMuscle}</span>
+                                                {filteredCompletedWorkouts.includes(data.id) ?
+                                                    <FaCheckCircle className='completed' /> : ""}
                                             </div>
                                             <div className="bottom mt-3">
                                                 <span>{data.wKg} kg</span>
                                                 <span>{data.wReps} reps</span>
-                                                <span>{data.wReps} sets</span>
+                                                <span>{data.wSets} sets</span>
                                             </div>
                                         </div>
                                     </div>
@@ -202,8 +229,8 @@ function Dashboard() {
                 </div>
             </div>
 
-            <StartWorkout />
-            {wvisi && <WorkoutLists setWVisi={setWVisi} />}
+            <StartWorkout setWorkoutsData={setWorkoutsData} workoutData={startWorkoutData} />
+            {wvisi && <WorkoutLists setWVisi={setWVisi} setWorkoutsData={setWorkoutsData} />}
             {mwvisi && <MoreWorkouts setWVisi={setWVisi} setMWVisi={setMWVisi} />}
             <PracticeWorkoutSection />
             {acvisi && <Achievements setAcVisi={setAcVisi} />}
@@ -319,6 +346,84 @@ function PracticeWorkoutSection({ setMWVisi }) {
 
 function Achievements({ setAcVisi }) {
 
+    const [completedWorkouts, setCompletedWorkouts] = useState([])
+    const [g1, setG1] = useState(false)
+    const [g2, setG2] = useState(false)
+    const [g3, setG3] = useState(false)
+    const [g4, setG4] = useState(false)
+
+    let goalOne = {
+        workouts: 4
+    };
+    let goalThree = {
+        workouts: 2,
+        sets: 10
+    };
+    let goalFour = {
+        workouts: 4,
+        forearms: 2,
+        fullbody: 2
+    }
+
+    const goals = [
+        "Complete personal 4 workouts",
+        "2 Biceps and 2 Chest Muscles Workout",
+        "10 Sets with 2 WeightLifting muscles",
+        "Complete 2 Forearms and FullBody muscles"
+    ]
+
+    useEffect(() => {
+        let result = FitDB.findColumnName("completedWorkouts");
+
+        if (result.error === true) {
+            return notif.error(result.message)
+        }
+        let { data } = result;
+        setCompletedWorkouts(data)
+
+        checkIfWorkoutsMeetsGoals()
+    }, [])
+
+    let goalOneStore = []
+    let goalThreeStore = []
+
+    function checkIfWorkoutsMeetsGoals() {
+        completedWorkouts.map((data) => {
+            if (!goalOneStore.includes(data.id)) {
+                goalOneStore.push(data.wName)
+            }
+        })
+
+        if (goalOneStore.length >= goalOne.workouts) {
+            setG1(true)
+        }
+
+        console.log(goalOneStore.length);
+
+        // algo for goal two
+        let filtBiceps = completedWorkouts.filter((data) => data.wMuscle === "biceps")
+        let filtChest = completedWorkouts.filter((data) => data.wMuscle === "chest")
+        if (filtBiceps.length > 1 && filtChest.length > 1) {
+            setG2(true)
+        }
+
+        // goal three algo
+        // filtered workouts with weightlifting
+        completedWorkouts.filter((data) => data.wMuscle === "weightlifting").map((data) => {
+            console.log(goalThreeStore);
+            if (parseInt(data.wSets) === 10 && data.wMuscle === "weightlifting") {
+                goalThreeStore.push(data.wMuscle)
+            }
+        })
+
+        if (goalThreeStore.length === goalThree.workouts) {
+            setG3(true)
+        }
+
+    }
+
+
+
     return (
         <div className="achievements-cont">
             <div className="top-head">
@@ -332,84 +437,284 @@ function Achievements({ setAcVisi }) {
                 </div>
             </div>
             <div className="body">
-                {
-                    [1, 2, 3, 43, 45].map((list) => {
-                        return (
-                            <div className="bx" key={list}>
-                                <div className="img-cont" style={{
-                                    backgroundImage: `url(${randomAcImages()})`,
-                                    backgroundSize: "contain",
-                                    backgroundRepeat: "no-repeat",
-                                    backgroundPosition: "center"
-                                }}>
+                <div className={g1 ? "bx complete" : "bx"}>
+                    <div className="img-cont" style={{
+                        backgroundImage: `url(${exercisesAcImages[5]})`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center"
+                    }}>
 
-                                </div>
+                    </div>
 
-                                <div className="bx-body">
-                                    <p>Complete personal 4 workouts</p>
+                    <div className="bx-body">
+                        <p>{goals[0]}</p>
 
-                                    <br />
+                        <br />
 
-                                    <span className="complete">
-                                        Achieved Workout
-                                    </span>
-                                    <br />
-                                    <br />
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+                        <span className={g1 ? "complete" : ""}>
+                            Achieved Workout
+                        </span>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div className={g2 ? "bx complete" : "bx"}>
+                    <div className="img-cont" style={{
+                        backgroundImage: `url(${exercisesAcImages[4]})`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center"
+                    }}>
+
+                    </div>
+
+                    <div className="bx-body">
+                        <p>{goals[1]}</p>
+
+                        <br />
+
+                        <span className={g1 ? "complete" : ""}>
+                            Achieved Workout
+                        </span>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div className={g3 ? "bx complete" : "bx"}>
+                    <div className="img-cont" style={{
+                        backgroundImage: `url(${exercisesAcImages[2]})`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center"
+                    }}>
+
+                    </div>
+
+                    <div className="bx-body">
+                        <p>{goals[2]}</p>
+
+                        <br />
+
+                        <span className={g1 ? "complete" : ""}>
+                            Achieved Workout
+                        </span>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div className={g4 ? "bx complete" : "bx"}>
+                    <div className="img-cont" style={{
+                        backgroundImage: `url(${exercisesAcImages[4]})`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center"
+                    }}>
+
+                    </div>
+
+                    <div className="bx-body">
+                        <p>{goals[3]}</p>
+
+                        <br />
+
+                        <span className={g1 ? "complete" : ""}>
+                            Achieved Workout
+                        </span>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div className="bx">
+                    <div className="img-cont" style={{
+                        backgroundImage: `url(${exercisesAcImages[4]})`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center"
+                    }}>
+
+                    </div>
+
+                    <div className="bx-body">
+                        <p>{goals[4]}</p>
+
+                        <br />
+
+                        <span className="complete">
+                            Achieved Workout
+                        </span>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div className="bx">
+                    <div className="img-cont" style={{
+                        backgroundImage: `url(${exercisesAcImages[5]})`,
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center"
+                    }}>
+
+                    </div>
+
+                    <div className="bx-body">
+                        <p>Complete personal 4 workouts</p>
+
+                        <br />
+
+                        <span className="complete">
+                            Achieved Workout
+                        </span>
+                        <br />
+                        <br />
+                    </div>
+                </div>
                 <div className="space"></div>
             </div>
         </div>
     )
 }
 
-function StartWorkout({ setWVisi }) {
+function StartWorkout({ setWVisi, setWorkoutsData, workoutData }) {
 
+    const [isStart, setIsStartWorkout] = useState(false)
+    // const [counter, setCounter] = useState(0);
+    const [nextsetCount, setNextSetCount] = useState(0);
+    const [start, setStart] = useState(false);
+    const [isStop, setIsStop] = useState(false);
+    const [currentTime, setCurrentTime] = useState("")
     const startRef = useRef()
+    const timerRef = useRef()
+
+    let counter = 0;
+
+    function startTimer() {
+        // let date = new Date();
+        // let min = date.getMinutes();
+        // let sec = date.getSeconds();
+        if (Object.entries(workoutData).length > 0) {
+            const { wSets } = workoutData
+
+            if (isStart === false && parseInt(wSets) === nextsetCount) {
+                setNextSetCount(0);
+                return setIsStartWorkout(true)
+            }
+
+            setIsStartWorkout(true)
+        }
+    }
+
+    function stopTimer() {
+        setIsStop(false)
+    }
+
+    function getTimer() {
+        const { current } = timerRef;
+        let time = current.innerHTML;
+        setCurrentTime(time);
+        return time;
+    }
+
+    function moveNextSet() {
+        if (Object.entries(workoutData).length > 0) {
+            const { wSets, wKg, id, wMuscle, wReps, wName } = workoutData
+            if (nextsetCount === parseInt(wSets)) {
+                setNextSetCount((prev) => (prev = parseInt(wSets)))
+                setIsStartWorkout(false)
+                setStart(false);
+
+                const completedWorkout = {
+                    id,
+                    wName,
+                    wSets,
+                    wKg,
+                    wReps,
+                    wMuscle,
+                    completed: true,
+                }
+
+                const result = FitDB.postData("completedWorkouts", completedWorkout)
+
+                if (result.error === true) {
+                    return notif.error(result.mesage)
+                }
+                const workData = FitDB.findColumnName("workouts")
+                setWorkoutsData(workData.data)
+                notif.success("Workout completed and saved");
+                close()
+                return;
+            }
+            setNextSetCount((prev) => (prev += 1))
+        }
+    }
 
     function close() {
         let { current } = startRef;
         current.classList.add("close")
+        setIsStartWorkout(false)
+    }
+
+    function deleteData(e) {
+        let tgt = e.target.dataset;
+
+        if (Object.entries(tgt).length > 0) {
+            let { id } = tgt;
+
+            let res1 = FitDB.deleteById("workouts", id)
+
+            if (res1.error === true) {
+                return notif.error(res1.message)
+            }
+            let res2 = FitDB.deleteById("completedWorkouts", id)
+            if (res2.error === true) {
+                return notif.error(res2.message)
+            }
+            notif.success("workout deleted")
+            return close()
+        }
     }
 
     return (
         <div className="start-workout-cont close" ref={startRef}>
             <div className="top-head">
                 <ion-icon name="arrow-back" class="icon" onClick={() => close()}></ion-icon>
-                <h4>Front Squart</h4>
+                <h4>{workoutData?.wName} </h4>
+                <button className="btn start" disabled={isStart} onClick={() => {
+                    startTimer()
+                }}>
+                    Start
+                </button>
             </div>
             <div className="img-cont" style={{
-                backgroundImage: `url(${randomImages()})`,
+                backgroundImage: `url(${workoutData?.wImage || randomImages()})`,
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center"
             }}></div>
             <div className="body">
                 <div className="top">
-                    <p>Exercise</p>
+                    <p>Exercise <button className="btn btn-danger" data-id={workoutData?.id} onClick={(e) => deleteData(e)}>delete</button> </p>
+                    <h4 ref={timerRef}>0</h4>
                 </div>
                 <div className="middle">
                     <div className="bx">
                         <FaWeightHanging className='icon' />
                         <div className="right">
-                            <h5>60kg</h5>
+                            <h5>{workoutData?.wKg}kg</h5>
                             <small>weight</small>
                         </div>
                     </div>
                     <div className="bx">
                         <IoMdClose className='icon' />
                         <div className="right">
-                            <h5>10</h5>
+                            <h5>{workoutData?.wReps}</h5>
                             <small>reps</small>
                         </div>
                     </div>
                     <div className="bx">
                         <IoMdRefresh className='icon' />
                         <div className="right">
-                            <h5>4</h5>
+                            <h5>{workoutData?.wSets}</h5>
                             <small>sets</small>
                         </div>
                     </div>
@@ -418,19 +723,25 @@ function StartWorkout({ setWVisi }) {
                     <div className="muscle-group">
                         <p>Muscle Groups</p>
                         <div className="bx">
-                            <span className="group">Biceps</span>
-                            <span className="group">Biceps</span>
+                            <span className="group">{workoutData?.wMuscle}</span>
                         </div>
                     </div>
                     <br />
                     <div className="sets-completed">
-                        <div className="completed">1</div>
-                        <div className="completed">2</div>
-                        <div className="completed">3</div>
+                        <p>Completed Sets</p>
+                        <div className={"completed"}>{nextsetCount}</div>
                     </div>
                     <br />
-                    <br />
-                    <button className="btn continue">Finished Workout</button>
+                    {Object.entries(workoutData).length > 0 && <button className={parseInt(workoutData.wSets) === nextsetCount ? "btn finished" : "btn continue"} onClick={() => {
+                        moveNextSet()
+                    }} disabled={isStart === false ? true : false}>
+                        {
+                            parseInt(workoutData.wSets) === nextsetCount ?
+                                "Finished"
+                                :
+                                "Next Set"
+                        }
+                    </button>}
                     <br />
                     <br />
                     <br />
@@ -440,7 +751,7 @@ function StartWorkout({ setWVisi }) {
     )
 }
 
-function WorkoutLists({ setWVisi }) {
+function WorkoutLists({ setWVisi, setWorkoutsData }) {
 
     const [image, setImage] = useState("")
     const [color, setColor] = useState("")
@@ -449,9 +760,9 @@ function WorkoutLists({ setWVisi }) {
         wTag: "",
         wMuscle: "",
         wImage: "",
-        wSets: "",
-        wReps: "",
-        wKg: ""
+        wSets: "2",
+        wReps: "3",
+        wKg: "10"
     })
 
     const fileRef = useRef()
@@ -553,10 +864,13 @@ function WorkoutLists({ setWVisi }) {
         }
 
         const result = FitDB.postData("workouts", formData)
+        const workData = FitDB.findColumnName("workouts")
 
         if (result.error === true) {
             return notif.error(result.message)
         }
+        setWorkoutsData([...workData.data]);
+        setWVisi(false)
         return notif.success("Workout added")
     }
 
@@ -604,15 +918,15 @@ function WorkoutLists({ setWVisi }) {
                     <label htmlFor="">Sets weight field</label>
                     <div className="inp-cont">
                         <div className="bx">
-                            <input type="number" name="wSets" onChange={(e) => handleFormData(e)} id="" />
+                            <input type="number" name="wSets" placeholder={"3"} onChange={(e) => handleFormData(e)} id="" />
                             <label htmlFor="">Sets</label>
                         </div>
                         <div className="bx">
-                            <input type="number" name="wReps" onChange={(e) => handleFormData(e)} id="" />
+                            <input type="number" name="wReps" onChange={(e) => handleFormData(e)} placeholder={"3"} id="" />
                             <label htmlFor="">Reps</label>
                         </div>
                         <div className="bx">
-                            <input type="number" name="wKg" onChange={(e) => handleFormData(e)} id="" />
+                            <input type="number" name="wKg" onChange={(e) => handleFormData(e)} placeholder={"3"} id="" />
                             <label htmlFor="">Kg</label>
                         </div>
                     </div>
