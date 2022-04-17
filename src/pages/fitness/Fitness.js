@@ -52,7 +52,7 @@ function FlashScreen() {
     return (
         <div className="flash-screen">
             <p>FitBro</p>
-            <div class="lds-hourglass"></div>
+            <div className="lds-hourglass"></div>
         </div>
     )
 }

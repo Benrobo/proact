@@ -3,7 +3,7 @@ import DataContext from '../../context/DataContext'
 import { FitnessDB, FitDB } from '../../db/DB'
 import workoutimg from "../../assets/img/workout.png"
 import { AiTwotoneTrophy, AiFillHome, AiOutlineUser } from "react-icons/ai"
-import { FaWeightHanging, FaCheckCircle, FaArrowUp } from "react-icons/fa"
+import { FaWeightHanging, FaCheckCircle, FaArrowUp, FaBullseye } from "react-icons/fa"
 import { IoBarbellSharp } from "react-icons/io5"
 import { IoMdClose, IoMdRefresh } from "react-icons/io"
 import { BsCircleFill } from "react-icons/bs"
@@ -67,6 +67,7 @@ function Dashboard() {
     const [workoutTags, setWorkoutTags] = useState([])
     const [workoutsData, setWorkoutsData] = useState([])
     const [startWorkoutData, setStartWorkoutData] = useState({})
+    const [proVisi, setProVisi] = useState(false);
     const [hvisi, setHVisi] = useState(true);
     const [wvisi, setWVisi] = useState(false);
     const [acvisi, setAcVisi] = useState(false);
@@ -252,8 +253,8 @@ function Dashboard() {
             {mwvisi && <MoreWorkouts getTargetedWorkoutsLessons={getTargetedWorkoutsLessons} setWVisi={setWVisi} setMWVisi={setMWVisi} />}
             <PracticeWorkoutSection targetLesson={TargetedWorkoutsLessons} />
             {acvisi && <Achievements setAcVisi={setAcVisi} />}
-            <Profile />
-            <BottomNavigation setWVisi={setWVisi} setHVisi={setHVisi} setAcVisi={setAcVisi} hvisi={hvisi} wvisi={wvisi} acvisi={acvisi} setMWVisi={setMWVisi} />
+            {proVisi && <Profile />}
+            <BottomNavigation setWVisi={setWVisi} setHVisi={setHVisi} setAcVisi={setAcVisi} hvisi={hvisi} wvisi={wvisi} acvisi={acvisi} setMWVisi={setMWVisi} setProVisi={setProVisi} />
             <FloatingAdd setWVisi={setWVisi} />
         </div>
     )
@@ -1039,7 +1040,7 @@ function Profile() {
     return (
         <div className="profile-cont">
             <div className="box">
-                <img src={`https://avatars.dicebear.com/api/micah/${userInfo.name}.svg`} alt="" />
+                <img src={avatar} alt="" />
                 <br />
                 <h4>{userInfo.name.toUpperCase()}</h4>
                 <p>{userInfo.goal}</p>
@@ -1059,7 +1060,7 @@ function FloatingAdd({ setWVisi }) {
     )
 }
 
-function BottomNavigation({ setWVisi, setHVisi, setAcVisi, setMWVisi, hvisi, wvisi, acvisi }) {
+function BottomNavigation({ setWVisi, setHVisi, setAcVisi, setMWVisi, setProVisi }) {
 
     const [bNavName, setBNavname] = useState("home")
 
@@ -1079,16 +1080,25 @@ function BottomNavigation({ setWVisi, setHVisi, setAcVisi, setMWVisi, hvisi, wvi
                 case "workout":
                     setMWVisi(true);
                     setAcVisi(false)
+                    setProVisi(false)
                     break;
 
                 case "achievement":
-                    setMWVisi(false);
                     setAcVisi(true)
+                    setMWVisi(false);
+                    setProVisi(false)
+                    break;
+
+                case "profile":
+                    setProVisi(true)
+                    setMWVisi(false);
+                    setAcVisi(false)
                     break;
 
                 default:
                     setMWVisi(false);
                     setAcVisi(false)
+                    setProVisi(false)
                     break;
             }
             setBNavname(nav)
@@ -1133,7 +1143,7 @@ function BottomNavigation({ setWVisi, setHVisi, setAcVisi, setMWVisi, hvisi, wvi
                 handleToggle(e)
             }}>
                 <AiOutlineUser data-nav="profile" className={bNavName === "profile" ? 'icon active' : "icon"} onClick={(e) => {
-                    setWVisi(true)
+                    setProVisi(true)
                     handleToggle(e)
                 }} />
                 <small>Profile</small>

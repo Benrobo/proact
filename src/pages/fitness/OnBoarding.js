@@ -297,7 +297,7 @@ function Weight({ setWeight }) {
             </div>
             <div className="body">
                 <input type="number" onChange={(e) => handleWeight(e)}
-                    placeHolder={"10"} className="inp" />
+                    placeholder={"10"} className="inp" />
                 <span className='msm'>KG</span>
             </div>
         </div>
