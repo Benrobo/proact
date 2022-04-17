@@ -23,7 +23,7 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    background: var(--fitness-bg);
+    background: var(--fitness-bg2);
     color: var(--fitness-comp);  
     display: flex;
     align-items: center;
@@ -32,6 +32,7 @@
     font-size: 30px;
     font-weight: 700;
     font-family: var(--poppin);
+    z-index:1500;
 }
 
 .flash-screen p{

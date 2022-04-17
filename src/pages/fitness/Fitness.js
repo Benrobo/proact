@@ -14,15 +14,13 @@ function Fitness() {
     const [onboardingVis, setOnboardingVisi] = useState(null);
     const [flvisi, setFlVisi] = useState(true)
 
-    setTimeout(() => {
-        setFlVisi(false)
-    }, 5000);
 
     let fitnessData = localStorage.getItem("proact-fitness");
 
     useEffect(() => {
         if (fitnessData !== null) {
             let { userInfo } = JSON.parse(fitnessData)
+
             if (Object.entries(userInfo).length > 0) {
                 return setOnboardingVisi(false);
             }
@@ -32,6 +30,10 @@ function Fitness() {
             setOnboardingVisi(true);
         }
     }, [])
+
+    setTimeout(() => {
+        setFlVisi(false)
+    }, 3000);
 
     return (
         <div className="fitness-cont">

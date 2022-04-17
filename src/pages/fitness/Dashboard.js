@@ -840,13 +840,12 @@ function WorkoutLists({ setWVisi, setWorkoutsData }) {
         wTag: "",
         wMuscle: "",
         wImage: "",
-        wSets: "2",
-        wReps: "3",
-        wKg: "10"
+        wSets: "",
+        wReps: "",
+        wKg: ""
     })
 
     const fileRef = useRef()
-    const colorRef = useRef()
 
 
     const muscles = [
@@ -889,15 +888,6 @@ function WorkoutLists({ setWVisi, setWorkoutsData }) {
         };
     }
 
-    function handleColor() {
-        const { current } = colorRef;
-        current.click();
-
-        if (current.value === "#000000") {
-            current.value = "#10e697"
-        }
-        return setColor(current.value)
-    }
 
     let fData = {}
     function handleFormData(e) {
@@ -909,9 +899,8 @@ function WorkoutLists({ setWVisi, setWorkoutsData }) {
     function AddWorkout() {
         formData["id"] = UUID();
         formData["wImage"] = image === "" ? randomImages() : image;
-        formData["wColor"] = color;
 
-        const { wImage, wColor, wName, wTag, wMuscle, wSets, wReps, wKg } = formData;
+        const { wName, wTag, wMuscle, wSets, wReps, wKg } = formData;
 
         if (wName === "") {
             return notif.error("workout name cant be empty")
@@ -942,6 +931,7 @@ function WorkoutLists({ setWVisi, setWorkoutsData }) {
         if (parseInt(wKg) < 0) {
             return notif.error("workout weight cant be less than 0")
         }
+
 
         const result = FitDB.postData("workouts", formData)
         const workData = FitDB.findColumnName("workouts")
@@ -1011,15 +1001,6 @@ function WorkoutLists({ setWVisi, setWorkoutsData }) {
                         </div>
                     </div>
                 </div>
-                <div className="bx color-cont">
-                    <button className="btn color" onClick={() => handleColor()}>Choose Color</button>
-                    <input type="color" ref={colorRef} onChange={() => handleColor()} hidden className="inp" />
-
-                    <div className="color-cont" style={{
-                        background: color,
-                        borderRadius: "10px"
-                    }} ></div>
-                </div>
                 <br />
             </div>
         </div>
@@ -1075,6 +1056,7 @@ function BottomNavigation({ setWVisi, setHVisi, setAcVisi, setMWVisi, setProVisi
                     setWVisi(false)
                     setMWVisi(false);
                     setAcVisi(false)
+                    setProVisi(false)
                     break;
 
                 case "workout":
