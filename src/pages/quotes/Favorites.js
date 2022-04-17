@@ -168,7 +168,7 @@ function FavouriteModal({ quoteid, quoteFont, quotebgimage, setVisibility, setFa
     return (
         <div className="download-section">
             <div className="quote-download" style={{
-                backgroundImage: `url(${quotesImages[0]})`,
+                backgroundImage: `url(${quotebgimage})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
