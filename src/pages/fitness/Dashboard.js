@@ -1015,7 +1015,7 @@ function Profile() {
 
     function logout() {
         localStorage.clear();
-        window.location = "http://localhost:3000/"
+        window.location = "/"
     }
 
     return (
