@@ -6,6 +6,7 @@ import { GiBiceps, GiFemale, GiMale } from "react-icons/gi"
 import Notification from "../../helpers/notyf"
 import { FitnessDB } from '../../db/DB'
 import avatar from "../../assets/img/avatar.png"
+import ScrollToBottom from "react-scroll-to-bottom";
 
 const notif = new Notification()
 
@@ -137,7 +138,7 @@ function OnBoarding({ setOnboardingVisi }) {
                 <p>Onboarding</p>
             </div>
             <div className="chat-main">
-                <div className="chat-body">
+                <ScrollToBottom className="chat-body">
                     {
                         botinit === 1 &&
                         <>
@@ -166,7 +167,7 @@ function OnBoarding({ setOnboardingVisi }) {
                     {gender !== "" && <UsersReplies data={gender} chat={botQuestions[9].quest} next={botQuestions[9].next} />}
 
                     {(gender !== "" && lastquest === true) && <BotReplies chat={botQuestions[10].quest} next={botQuestions[10].next} data={username} />}
-                </div>
+                </ScrollToBottom>
                 <br />
                 <div className="bottom-cont">
                     <button className="btn btn-block continue-btn" disabled={lastquest === null ? true : false} onClick={() => saveUserInfo()}>
@@ -295,7 +296,8 @@ function Weight({ setWeight }) {
                 <p>My Weight is</p>
             </div>
             <div className="body">
-                <input type="number" onChange={(e) => handleWeight(e)} defaultValue={userweight === "" ? 10 : userweight} className="inp" />
+                <input type="number" onChange={(e) => handleWeight(e)}
+                    placeHolder={"10"} className="inp" />
                 <span className='msm'>KG</span>
             </div>
         </div>
@@ -304,7 +306,7 @@ function Weight({ setWeight }) {
 
 function Goal({ setGoal }) {
 
-    const [usergoal, setUserGoal] = useState("build muscle");
+    const [usergoal, setUserGoal] = useState("");
 
     async function updateGoal(e) {
         let { goal } = e.target.dataset;
@@ -338,7 +340,7 @@ function Goal({ setGoal }) {
 
 function Gender({ setGender, setLastQuest }) {
 
-    const [usergender, setUserGender] = useState("male")
+    const [usergender, setUserGender] = useState("")
 
     async function updateGender(e) {
         let { gender } = e.target.dataset;

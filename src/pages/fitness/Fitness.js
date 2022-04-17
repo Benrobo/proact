@@ -12,6 +12,11 @@ FitDB.init();
 function Fitness() {
     const { themeBg } = useContext(DataContext)
     const [onboardingVis, setOnboardingVisi] = useState(null);
+    const [flvisi, setFlVisi] = useState(true)
+
+    setTimeout(() => {
+        setFlVisi(false)
+    }, 5000);
 
     let fitnessData = localStorage.getItem("proact-fitness");
 
@@ -31,10 +36,10 @@ function Fitness() {
     return (
         <div className="fitness-cont">
 
-            {onboardingVis && <OnBoarding setOnboardingVisi={setOnboardingVisi} />}
+            {(flvisi === false && onboardingVis) && <OnBoarding setOnboardingVisi={setOnboardingVisi} />}
             {onboardingVis === false && <Dashboard />}
 
-            {false && <FlashScreen />}
+            {flvisi && <FlashScreen />}
         </div>
     )
 }
@@ -47,6 +52,7 @@ function FlashScreen() {
     return (
         <div className="flash-screen">
             <p>FitBro</p>
+            <div class="lds-hourglass"></div>
         </div>
     )
 }
