@@ -3,13 +3,14 @@ import DataContext from '../../context/DataContext'
 import { FitnessDB, FitDB } from '../../db/DB'
 import workoutimg from "../../assets/img/workout.png"
 import { AiTwotoneTrophy, AiFillHome, AiOutlineUser } from "react-icons/ai"
-import { FaWeightHanging, FaCheckCircle } from "react-icons/fa"
+import { FaWeightHanging, FaCheckCircle, FaArrowUp } from "react-icons/fa"
 import { IoBarbellSharp } from "react-icons/io5"
 import { IoMdClose, IoMdRefresh } from "react-icons/io"
 import { BsCircleFill } from "react-icons/bs"
 import Notification from "../../helpers/notyf";
 import exerciseData from "./exercises.json"
 import "./dashboard.css"
+import avatar from "../../assets/img/avatar.png"
 
 const notif = new Notification(3000);
 
@@ -33,6 +34,9 @@ const exercisesAcImages = [
     "exercises/achievements/5.png",
 ]
 
+async function sleep(sec) {
+    return new Promise((res) => setTimeout(res, sec * 1000))
+}
 
 function randomImages() {
     let rand = Math.floor(Math.random() * exercisesImages.length);
@@ -248,6 +252,7 @@ function Dashboard() {
             {mwvisi && <MoreWorkouts getTargetedWorkoutsLessons={getTargetedWorkoutsLessons} setWVisi={setWVisi} setMWVisi={setMWVisi} />}
             <PracticeWorkoutSection targetLesson={TargetedWorkoutsLessons} />
             {acvisi && <Achievements setAcVisi={setAcVisi} />}
+            <Profile />
             <BottomNavigation setWVisi={setWVisi} setHVisi={setHVisi} setAcVisi={setAcVisi} hvisi={hvisi} wvisi={wvisi} acvisi={acvisi} setMWVisi={setMWVisi} />
             <FloatingAdd setWVisi={setWVisi} />
         </div>
@@ -314,13 +319,13 @@ function MoreWorkouts({ getTargetedWorkoutsLessons, setWVisi, setMWVisi }) {
 
 function PracticeWorkoutSection({ targetLesson, setMWVisi }) {
 
-    const [startPractice, setStartPractice] = useState(false);
-    const [complete, setComplete] = useState(false)
-
+    const [isSeen, setisSeen] = useState(false)
     const pracRef = useRef()
+    const instructionRef = useRef();
 
     const validImageExt = ["png", "jpeg", "jpg", "giff"]
-    const validVideoExt = ["mp4"]
+
+    const instructions = targetLesson?.instructions;
 
     function getMediaExt(path = "") {
         if (path === "") {
@@ -337,6 +342,18 @@ function PracticeWorkoutSection({ targetLesson, setMWVisi }) {
         let ext = formated[formated.length - 1];
 
         return { error: false, ext, src: path }
+    }
+
+    function increaseHeight() {
+        if (instructionRef.current !== null) {
+            if (isSeen === false) {
+                instructionRef.current.style.height = "60vh";
+                setisSeen(true)
+                return
+            }
+            instructionRef.current.style.height = "10vh";
+            setisSeen(false)
+        }
     }
 
     function close() {
@@ -382,23 +399,20 @@ function PracticeWorkoutSection({ targetLesson, setMWVisi }) {
                         </div>
                         <div className="right bx">
                             <span className="beginner">{targetLesson?.level}</span>
-                            <button className={complete ? "btn complete" : "btn"}>
-                                {complete ? "Finish Session" : "Begin Session"}
-                            </button>
+
                         </div>
                     </div>
-                    <div className="instructions">
-                        {
-                            startPractice
-                            &&
-                            <>
-                                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, rem?</h5>
-
-                                <div className="pro-bar">
-                                    <div className="p-bar"></div>
-                                </div>
-                            </>
-                        }
+                    <div className="instructions" ref={instructionRef}>
+                        <button className="more btn" onClick={() => increaseHeight()}></button>
+                        <div className="body">
+                            {
+                                (instructions && instructions.length > 0 && isSeen === true) && instructions.map((list) => {
+                                    return (
+                                        <p key={list}>{list}</p>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1006,6 +1020,31 @@ function WorkoutLists({ setWVisi, setWorkoutsData }) {
                     }} ></div>
                 </div>
                 <br />
+            </div>
+        </div>
+    )
+}
+
+function Profile() {
+
+    let profileData = JSON.parse(localStorage.getItem("proact-fitness"));
+
+    const { userInfo } = profileData;
+
+    function logout() {
+        localStorage.clear();
+        window.location = "http://localhost:3000/"
+    }
+
+    return (
+        <div className="profile-cont">
+            <div className="box">
+                <img src={`https://avatars.dicebear.com/api/micah/${userInfo.name}.svg`} alt="" />
+                <br />
+                <h4>{userInfo.name.toUpperCase()}</h4>
+                <p>{userInfo.goal}</p>
+                <br />
+                <button className="btn logout" onClick={() => logout()}>Logout</button>
             </div>
         </div>
     )

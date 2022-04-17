@@ -829,28 +829,54 @@
 
 .practice-cont .practice-section .bottom .instructions{
     width: 100%;
+    height: 10vh;
+    background: #000;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: start;
-    padding: 20px;
+    padding: 0px;
     margin-top: 20px;
-}
-.practice-cont .practice-section .bottom .instructions .pro-bar{
-    width: 100%;
-    height: 13px;
-    background: var(--fitness-comp3);
-    margin-top: 20px;
-    border-radius: 30px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    border-radius: 50px 50px 0px 0px;
     overflow: hidden;
-}
-.practice-cont .practice-section .bottom .instructions .pro-bar .p-bar{
-    width: 50%;
-    height: 100vmin;
-    background: var(--fitness-comp);
+    box-shadow: 0px 0px 20px var(--fitness-bg);
+    transition: all .2s ease;
 }
 
+.practice-cont .practice-section .bottom .instructions .btn{
+    width: 100px;
+    height: 2px;
+    background: var(--fitness-comp);
+    padding: 5px;
+    position: absolute;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border-radius: 30px;
+    z-index: 100;
+}
+
+.practice-cont .practice-section .bottom .instructions .body{
+    width: 100%;
+    height: auto;
+    display:flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: start;
+    font-family: var(--poppin);
+    position: absolute;
+    bottom:0px;
+    padding: 20px;
+    left: 0px;
+    font-size: 15px;
+}
 
 
 .achievements-cont{
@@ -965,6 +991,62 @@
     width: 100%;
     height:150px;
 }
+
+
+
+/* Profile cont */
+.profile-cont{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background:rgba(0,0,0,.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index:500;
+}
+
+.profile-cont .box{
+    width: 350px;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--fitness-bg);
+    border-radius: 10px;
+}
+
+.profile-cont .box img{
+    width: 150px;
+    padding: 5px 8px;
+    border-radius: 50%;
+    border: 3px solid var(--fitness-comp);
+}
+
+
+.profile-cont .box h4{
+    font-weight: 700;
+}
+
+.profile-cont .box p{
+    color: var(--fitness-comp);
+    font-weight: 600;
+}
+
+.profile-cont .box .logout{
+    width: 100%;
+    height: auto;
+    padding: 10px 20px;
+    background: var(--red2);
+    color: var(--red1);
+    border-radius: 30px;
+    z-index: 500;
+}
+
 
 
 /* Bottom Nav */
