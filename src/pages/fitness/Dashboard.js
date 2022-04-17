@@ -67,6 +67,7 @@ function Dashboard() {
     const [wvisi, setWVisi] = useState(false);
     const [acvisi, setAcVisi] = useState(false);
     const [mwvisi, setMWVisi] = useState(false);
+    const [TargetedWorkoutsLessons, setTargetedWorkoutsLessons] = useState({})
 
 
     let fitnessData = localStorage.getItem("proact-fitness");
@@ -129,6 +130,7 @@ function Dashboard() {
         workoutsTags()
     }, [workoutExists])
 
+
     useEffect(() => {
         setUserName(userInfo.name);
     }, [])
@@ -165,6 +167,18 @@ function Dashboard() {
 
     }
     getCompletedWorkouts()
+
+    function getTargetedWorkoutsLessons(e) {
+        let tgt = e.target.dataset;
+        let practice = document.querySelector(".practice-cont");
+
+        if (Object.entries(tgt).length > 0) {
+            let { name } = tgt;
+            let filtData = exerciseData.exercises.filter((data) => data.name === name);
+            setTargetedWorkoutsLessons(filtData[0])
+            practice.classList.remove("close")
+        }
+    }
 
     return (
         <div className="dashboard-cont">
@@ -231,8 +245,8 @@ function Dashboard() {
 
             <StartWorkout setWorkoutsData={setWorkoutsData} workoutData={startWorkoutData} />
             {wvisi && <WorkoutLists setWVisi={setWVisi} setWorkoutsData={setWorkoutsData} />}
-            {mwvisi && <MoreWorkouts setWVisi={setWVisi} setMWVisi={setMWVisi} />}
-            <PracticeWorkoutSection />
+            {mwvisi && <MoreWorkouts getTargetedWorkoutsLessons={getTargetedWorkoutsLessons} setWVisi={setWVisi} setMWVisi={setMWVisi} />}
+            <PracticeWorkoutSection targetLesson={TargetedWorkoutsLessons} />
             {acvisi && <Achievements setAcVisi={setAcVisi} />}
             <BottomNavigation setWVisi={setWVisi} setHVisi={setHVisi} setAcVisi={setAcVisi} hvisi={hvisi} wvisi={wvisi} acvisi={acvisi} setMWVisi={setMWVisi} />
             <FloatingAdd setWVisi={setWVisi} />
@@ -242,14 +256,14 @@ function Dashboard() {
 
 export default Dashboard
 
-function MoreWorkouts({ setWVisi, setMWVisi }) {
+function MoreWorkouts({ getTargetedWorkoutsLessons, setWVisi, setMWVisi }) {
 
 
 
-    function openPraciceSection() {
-        let practice = document.querySelector(".practice-cont");
-        practice.classList.remove("close")
-    }
+    // function openPraciceSection() {
+    //     let practice = document.querySelector(".practice-cont");
+    //     practice.classList.remove("close")
+    // }
 
     return (
         <div className="more-workouts">
@@ -264,12 +278,15 @@ function MoreWorkouts({ setWVisi, setMWVisi }) {
                 {
                     exerciseData.exercises.map((list, i) => {
                         return (
-                            <div className="mw-box" data-id={UUID()} key={i} onClick={(e) => openPraciceSection(e)}>
-                                <div className="img-cont" style={{
+                            <div className="mw-box" key={i}>
+                                <div className="img-cont" data-name={list.name} data-id={UUID()} style={{
                                     backgroundImage: `url(${randomImages()})`,
                                     backgroundSize: "contain",
                                     backgroundRepeat: "no-repeat",
                                     backgroundPosition: "center"
+                                }} onClick={(e) => {
+                                    // openPraciceSection(e)
+                                    getTargetedWorkoutsLessons(e)
                                 }}></div>
                                 <div className="body">
                                     <div className="top">
@@ -295,31 +312,76 @@ function MoreWorkouts({ setWVisi, setMWVisi }) {
     )
 }
 
-function PracticeWorkoutSection({ setMWVisi }) {
+function PracticeWorkoutSection({ targetLesson, setMWVisi }) {
 
     const [startPractice, setStartPractice] = useState(false);
     const [complete, setComplete] = useState(false)
 
     const pracRef = useRef()
 
+    const validImageExt = ["png", "jpeg", "jpg", "giff"]
+    const validVideoExt = ["mp4"]
+
+    function getMediaExt(path = "") {
+        if (path === "") {
+            return {
+                error: true,
+                ext: null,
+                src: null
+            }
+        }
+
+        let url = new URL(path)
+        let { pathname } = url;
+        let formated = pathname.replace("/", "").split(".");
+        let ext = formated[formated.length - 1];
+
+        return { error: false, ext, src: path }
+    }
+
     function close() {
         pracRef.current.classList.add("close")
     }
+
+    let mediaExt = getMediaExt(targetLesson?.video)
 
     return (
         <div className="practice-cont close" ref={pracRef}>
             <div className="practice-section">
                 <div className="top-head">
-                    <ion-icon name="arrow-front" class="icon" onClick={() => close()}></ion-icon>
+
+                    {
+                        mediaExt.ext === null ?
+                            <div className="image" style={{
+                                backgroundImage: `url(${randomImages()})`,
+                                backgroundSize: "contain",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center"
+                            }}></div>
+                            :
+                            validImageExt.includes(mediaExt.ext) ?
+                                <div className="image" style={{
+                                    backgroundImage: `url(${mediaExt.src})`,
+                                    backgroundSize: "contain",
+                                    backgroundRepeat: "no-repeat",
+                                    backgroundPosition: "center"
+                                }}></div>
+                                :
+                                <video src={mediaExt.src} className="video" width="100%" height={"100%"} autoPlay loop>
+                                    <source src={mediaExt.src} type="video/mp4" />
+                                </video>
+                    }
+
+                    <ion-icon name="arrow-back" class="icon" onClick={() => close()}></ion-icon>
                 </div>
                 <div className="bottom">
                     <div className="head">
                         <div className="left bx">
-                            <h3>Title</h3>
-                            <p>kettlebells</p>
+                            <h3>{targetLesson?.name}</h3>
+                            <p>{targetLesson?.equipment}</p>
                         </div>
                         <div className="right bx">
-                            <span className="beginner">intermediate</span>
+                            <span className="beginner">{targetLesson?.level}</span>
                             <button className={complete ? "btn complete" : "btn"}>
                                 {complete ? "Finish Session" : "Begin Session"}
                             </button>
@@ -381,43 +443,46 @@ function Achievements({ setAcVisi }) {
         let { data } = result;
         setCompletedWorkouts(data)
 
-        checkIfWorkoutsMeetsGoals()
     }, [])
+
+    useEffect(() => {
+        checkIfWorkoutsMeetsGoals()
+    })
 
     let goalOneStore = []
     let goalThreeStore = []
 
     function checkIfWorkoutsMeetsGoals() {
-        completedWorkouts.map((data) => {
-            if (!goalOneStore.includes(data.id)) {
-                goalOneStore.push(data.wName)
+        if (completedWorkouts.length > 0) {
+            completedWorkouts.map((data) => {
+                if (!goalOneStore.includes(data.id)) {
+                    goalOneStore.push(data.wName)
+                }
+            })
+
+            if (goalOneStore.length >= goalOne.workouts) {
+                setG1(true)
             }
-        })
 
-        if (goalOneStore.length >= goalOne.workouts) {
-            setG1(true)
-        }
-
-        console.log(goalOneStore.length);
-
-        // algo for goal two
-        let filtBiceps = completedWorkouts.filter((data) => data.wMuscle === "biceps")
-        let filtChest = completedWorkouts.filter((data) => data.wMuscle === "chest")
-        if (filtBiceps.length > 1 && filtChest.length > 1) {
-            setG2(true)
-        }
-
-        // goal three algo
-        // filtered workouts with weightlifting
-        completedWorkouts.filter((data) => data.wMuscle === "weightlifting").map((data) => {
-            console.log(goalThreeStore);
-            if (parseInt(data.wSets) === 10 && data.wMuscle === "weightlifting") {
-                goalThreeStore.push(data.wMuscle)
+            // algo for goal two
+            let filtBiceps = completedWorkouts.filter((data) => data.wMuscle === "biceps")
+            let filtChest = completedWorkouts.filter((data) => data.wMuscle === "chest")
+            console.log(filtBiceps, filtChest);
+            if (filtBiceps.length > 1 && filtChest.length > 1) {
+                setG2(true)
             }
-        })
 
-        if (goalThreeStore.length === goalThree.workouts) {
-            setG3(true)
+            // goal three algo
+            // filtered workouts with weightlifting
+            completedWorkouts.filter((data) => data.wMuscle === "weightlifting").map((data) => {
+                if (parseInt(data.wSets) === 10 && data.wMuscle === "weightlifting") {
+                    goalThreeStore.push(data.wMuscle)
+                }
+            })
+
+            if (goalThreeStore.length === goalThree.workouts) {
+                setG3(true)
+            }
         }
 
     }

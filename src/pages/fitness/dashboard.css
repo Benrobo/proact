@@ -608,7 +608,6 @@
     border-radius: 5px;
     overflow: hidden;
     margin-top: 15px;
-    cursor: pointer;
 
 }
 
@@ -616,6 +615,8 @@
     width: 100%;
     height: 150vmin;
     background: #fff;
+    cursor: pointer;
+
 }
 .more-workouts .body .mw-box .body{
     width: 100%;
@@ -708,6 +709,22 @@
     height: 60vh;
     background: var(--light3);
     position:relative;
+}
+
+.practice-cont .practice-section .top-head .video{
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+}
+
+.practice-cont .practice-section .top-head .image{
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
 }
 
 .practice-cont .practice-section .top-head .icon{
@@ -908,7 +925,6 @@
     border-radius: 5px;
     overflow: hidden;
     margin-top: 15px;
-    cursor: pointer;
     opacity: .4;
 }
 
