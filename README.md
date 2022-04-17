@@ -78,6 +78,7 @@ This application was deployed using
 
 
 ## Live Url
+## Avilable for desktop only not (mobile)
 [pro-act.netlify.app](https://pro-act.netlify.app/)
 
 ## Team
