@@ -1,0 +1,241 @@
+.mood-cont{
+    width:100%;
+    height:100vh;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--mood-bg3);
+    font-family: var(--poppin);
+    overflow: hidden;
+}
+
+.mood-cont .top-head{
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 0px 0px 0px 100px;
+}
+
+.mood-cont .top-head h1{
+    font-weight: 1000;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+
+.mood-cont .top-head span{
+    color: var(--light3);
+    font-style: italic;
+}
+
+.mood-cont .bottom{
+    width: 100%;
+    height: 60vh;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: var(--mood-bg2);
+}
+
+.mood-cont .bottom .top{
+    width: 100%;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.mood-cont .bottom .box-cont{
+    width: 70%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.mood-cont .bottom .box-cont .bx{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--mood-bg1);
+    margin: 10px auto;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .2s ease;
+    transform: scale(.90);
+}
+
+.mood-cont .bottom .box-cont .bx:hover{
+    transition: all .2s ease;
+    transform: scale(.95);
+}
+
+.mood-cont .bottom .box-cont .bx small{
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+}
+
+.mood-cont .bottom .box-cont .bx.active{
+    border: 3px solid var(--mood-pink);
+    background: var(--mood-bg3);
+}
+
+
+.mood-player{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1500;
+    background: var(--mood-bg3);
+    transition: all .2s ease;
+    transform: translateY(1000px);
+    box-shadow: 0px 0px 10px #000;
+}
+
+.mood-player.active{
+    transition: all .2s ease;
+    transform: translateY(0px);
+}
+
+.mood-player .top-cont{
+    width: 100%;
+    height: auto;
+    padding: 12px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.mood-player .top-cont .icon{
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.mood-player .top-cont .icon:hover{
+    background: var(--mood-bg2);
+}
+
+.mood-player .bottom-cont{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    padding: 20px;
+
+}
+
+.mood-player .bottom-cont .top-bx{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mood-player .bottom-cont .top-bx .bg{
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    background-size: contain;
+    overflow: hidden;
+    background: #fff;
+}
+
+.mood-player .bottom-cont .controls{
+    width: 100%;
+    height: auto;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mood-player .bottom-cont .controls .icon{
+    padding: 10px;
+    font-size: 45px;
+    background: var(--mood-pink2);
+    color: var(--mood-pink);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s ease;
+    transform: scale(.90);
+}
+
+.mood-player .bottom-cont .controls .icon:hover{
+    transition: all .2s ease;
+    transform: scale(.95);
+}
+
+.audio{
+    display:none;
+}
+
+.flash-screen{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: var(--mood-bg3);
+    font-weight: 900;
+}
+
+.flash-screen h3{
+    font-size: 40px;
+    font-weight: 900;
+    color: #fff;
+    transition: all .2s ease;
+}
+
+
+.flash-screen .lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .flash-screen .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: var(--mood-pink);
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .flash-screen .lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+  }
+  .flash-screen .lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+  }
+  .flash-screen  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+  @keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }
+  

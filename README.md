@@ -20,7 +20,7 @@ The one and only app you would ever need to stay motivated 🥰. ProAct can be c
 
 As the codejam theme implies `Make Everyday a Little Less Ordinary`, I was able to `translate` and `understand` this theme with an application which is meant to make the end user `Motivated`, `Active` and `Productive`.
 
-What makes this application standouts from the rest is that, it doesnt provide this complex features `Motivational Quotes`, `Tasks Planner`, `Mood`, `Daily Facts` on different platforms, but rather provides all these features on it own. Also consist of an `onboarding` chatbot which get you into the app using some interactive UI comonents 🥰.
+What makes this application standouts from the rest is that, it doesnt provide this complex features `Motivational Quotes`, , `Mood`, on different platforms, but rather provides all these features on it own. Also consist of an `onboarding` chatbot which get you into the app using some interactive UI comonents 🥰.
 
 
 ### ProAct Features

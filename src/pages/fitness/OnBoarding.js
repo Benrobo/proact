@@ -45,7 +45,7 @@ const botQuestions = [
     },
     {
         next: 10,
-        quest: "Excuse me {}, considering your name, you're most likely to be a man, but i need to know for sure. what your gender ?",
+        quest: "Excuse me {}, considering your name, you're most likely to be a man 😉, but i need to know for sure. what your gender ?",
     },
     {
         next: 11,

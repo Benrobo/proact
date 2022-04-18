@@ -55,6 +55,12 @@
     --fitness-comp3: rgba(17, 183, 122, 0.4);
     --fitness-text: #fff;
     --fitness-blue: #00a2ffd7;
+    /* mmod theme*/
+    --mood-bg1:#9570fb;
+    --mood-bg2:#a788ff;
+    --mood-bg3:#7055be;
+    --mood-pink:#fea9d2;
+    --mood-pink2:rgb(254, 169, 210, .4);
 }
 
 html{

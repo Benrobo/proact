@@ -8,10 +8,13 @@ export function DataContextProvider({ children }) {
 
     // change theme
     const [themeBg, setThemeBg] = useState("")
+    const [iconColor, setIconColor] = useState("")
 
     return (
         <DataContext.Provider value={{
             themeBg,
+            iconColor,
+            setIconColor,
             setThemeBg,
         }} >
             {children}

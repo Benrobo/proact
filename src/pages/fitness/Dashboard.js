@@ -189,7 +189,7 @@ function Dashboard() {
         <div className="dashboard-cont">
             <div className="top-head">
                 <div className="left">
-                    <h5>Good Morning</h5>
+                    <h5>Good Day 😉🔥</h5>
                     <p>{username.toUpperCase()}</p>
                     <br />
                     <div className="goal">

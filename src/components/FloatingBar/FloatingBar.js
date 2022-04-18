@@ -72,44 +72,6 @@ function FloatingBar({
                 </li>
                 <li>
                     <ion-icon
-                        name="bulb"
-                        data-classname="bulb"
-                        class={
-                            activename === "bulb"
-                                ? "icon active md hydrated"
-                                : "icon md hydrated"
-                        }
-                        onClick={(e) => {
-                            let name = e.target.dataset.classname;
-
-                            if (name !== undefined) {
-                                setActiveName(name);
-                            }
-                        }}
-                    ></ion-icon>
-                    <div className="tool-tip">Daily Facts</div>
-                </li>
-                <li>
-                    <ion-icon
-                        name="cube"
-                        data-classname="tasks"
-                        class={
-                            activename === "tasks"
-                                ? "icon active md hydrated"
-                                : "icon md hydrated"
-                        }
-                        onClick={(e) => {
-                            let name = e.target.dataset.classname;
-
-                            if (name !== undefined) {
-                                setActiveName(name);
-                            }
-                        }}
-                    ></ion-icon>
-                    <span className="tool-tip">Tasks</span>
-                </li>
-                <li>
-                    <ion-icon
                         name="play"
                         data-classname="mood"
                         class={

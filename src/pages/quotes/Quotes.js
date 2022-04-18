@@ -40,7 +40,7 @@ function Quotes() {
         // disable active after 5sec
         setTimeout(() => {
             setActive(true);
-        }, 1000);
+        }, 4000);
     }, []);
 
     return <>{active ? <MainScreen /> : <FlashScreen />}</>;
