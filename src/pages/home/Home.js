@@ -65,7 +65,6 @@ function Home() {
                         <img src={mockup} alt="" />
                     </div>
                 </div>}
-
                 {pageName === "features" && <Features />}
                 {pageName === "about" && <Section />}
             </div>
