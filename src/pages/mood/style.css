@@ -153,6 +153,7 @@
     background-size: contain;
     overflow: hidden;
     background: #fff;
+    position: relative;
 }
 
 .mood-player .bottom-cont .controls{

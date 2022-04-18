@@ -4,9 +4,7 @@ import "./style.css"
 
 
 const moodImages = [
-    "mood/img/1.png",
-    "mood/img/2.png",
-    "mood/img/3.png",
+    "mood/img/bio.gif",
 ]
 
 const moodAudio = [
@@ -135,6 +133,9 @@ function MoodPlayer({ mood }) {
 
     function playAudio() {
         audio.play()
+        if (audio.paused) {
+            setIsPlaying(false)
+        }
         if (isPlaying) {
             stopAudio()
             return
@@ -166,11 +167,12 @@ function MoodPlayer({ mood }) {
             <div className="bottom-cont">
                 <div className="top-bx">
                     <div className="bg" style={{
-                        backgroundImage: `url(${randomImages()})`,
+                        backgroundImage: `url(${moodImages[0]})`,
                         backgroundPosition: "center",
-                        backgroundSize: "contain",
+                        backgroundSize: "cover",
                         backgroundRepeat: "no-repeat"
-                    }}></div>
+                    }}>
+                    </div>
                     <br />
                     <h4>{mood}</h4>
                 </div>
