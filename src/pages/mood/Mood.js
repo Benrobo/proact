@@ -61,7 +61,7 @@ function Mood() {
         <div className="mood-cont">
             <div className="top-head">
                 <h1>Medi</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, debitis!</p>
+                <p>Brilliant things happen in calm minds. Be calm. You're brilliant</p>
                 <br />
                 <span>select your mood below</span>
             </div>
