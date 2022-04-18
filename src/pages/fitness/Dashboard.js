@@ -444,9 +444,9 @@ function Achievements({ setAcVisi }) {
         fullbody: 2
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         // hide cofetti
-        if(g1 || g2 || g3 || g4){
+        if (g1 || g2 || g3 || g4) {
             setTimeout(() => {
                 setCofettiHide(false)
             }, 5000);
@@ -520,12 +520,12 @@ function Achievements({ setAcVisi }) {
         <div className="achievements-cont">
             {
                 (g1 || g2 || g3 || g4) &&
-                    cofettiHide && <Confetti
-                        width={innerWith}
-                        height={innerHeight}
-                        numberOfPieces={400}
-                        run={true}
-                    />
+                cofettiHide && <Confetti
+                    width={innerWith}
+                    height={innerHeight}
+                    numberOfPieces={400}
+                    run={true}
+                />
             }
             <div className="top-head">
 
@@ -742,6 +742,7 @@ function StartWorkout({ setWVisi, setWorkoutsData, workoutData }) {
                 }
                 const workData = FitDB.findColumnName("workouts")
                 setWorkoutsData(workData.data)
+                setNextSetCount(0)
                 notif.success("Workout completed and saved");
                 close()
                 return;
