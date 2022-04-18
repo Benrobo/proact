@@ -6,7 +6,7 @@
     top: 0px;
     left: 0px;
     margin: 0px;
-    overflow: hidden;
+    /* overflow: hidden; */
     background: var(--home-bg2);
     font-family: var(--poppin);
     scroll-behavior: smooth;

@@ -185,7 +185,7 @@
     display:none;
 }
 
-.flash-screen{
+.m-flash-screen{
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -195,7 +195,7 @@
     font-weight: 900;
 }
 
-.flash-screen h3{
+.m-flash-screen h3{
     font-size: 40px;
     font-weight: 900;
     color: #fff;
@@ -203,13 +203,13 @@
 }
 
 
-.flash-screen .lds-facebook {
+.m-flash-screen .lds-facebook {
     display: inline-block;
     position: relative;
     width: 80px;
     height: 80px;
   }
-  .flash-screen .lds-facebook div {
+  .m-flash-screen .lds-facebook div {
     display: inline-block;
     position: absolute;
     left: 8px;
@@ -217,15 +217,15 @@
     background: var(--mood-pink);
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
   }
-  .flash-screen .lds-facebook div:nth-child(1) {
+  .m-flash-screen .lds-facebook div:nth-child(1) {
     left: 8px;
     animation-delay: -0.24s;
   }
-  .flash-screen .lds-facebook div:nth-child(2) {
+  .m-flash-screen .lds-facebook div:nth-child(2) {
     left: 32px;
     animation-delay: -0.12s;
   }
-  .flash-screen  .lds-facebook div:nth-child(3) {
+  .m-flash-screen  .lds-facebook div:nth-child(3) {
     left: 56px;
     animation-delay: 0;
   }

@@ -1,7 +1,7 @@
 @import url('http://fonts.cdnfonts.com/css/random?styles=344');
                 
 
-.flash-screen{
+.q-flash-screen{
     width: 100%;
     height: 100vh;
     overflow: hidden;
@@ -13,12 +13,12 @@
     background: var(--dark3);
 }
 
-.flash-screen .clr{
+.q-flash-screen .clr{
     color:var(--gr1);
     font-weight: 900;
 }
 
-.flash-screen .bx{
+.q-flash-screen .bx{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,7 @@
     position: relative;
 }
 
-.flash-screen .bx .icon{
+.q-flash-screen .bx .icon{
     color: var(--gr1);
     margin: 10px;
     margin-bottom: 10px;

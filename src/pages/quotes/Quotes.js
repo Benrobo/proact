@@ -394,7 +394,7 @@ function ImageDownload({ quoteid, quoteFont, quotebgimage, setVisibility }) {
 
 function FlashScreen() {
     return (
-        <div className="flash-screen">
+        <div className="q-flash-screen">
             <div className="bx">
                 <ion-icon name="ellipse" class="icon"></ion-icon>
                 <h4>

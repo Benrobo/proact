@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
-import DataContext from '../../context/DataContext'
-import { FitnessDB, FitDB } from '../../db/DB'
-import workoutimg from "../../assets/img/workout.png"
+import React, { useState, useEffect, useRef } from 'react'
+import { FitDB } from '../../db/DB'
+import Confetti from 'react-confetti'
 import { AiTwotoneTrophy, AiFillHome, AiOutlineUser } from "react-icons/ai"
 import { FaWeightHanging, FaCheckCircle, FaArrowUp, FaBullseye } from "react-icons/fa"
 import { IoBarbellSharp } from "react-icons/io5"
@@ -428,6 +427,9 @@ function Achievements({ setAcVisi }) {
     const [g2, setG2] = useState(false)
     const [g3, setG3] = useState(false)
     const [g4, setG4] = useState(false)
+    const [cofettiHide, setCofettiHide] = useState(true)
+
+    const { innerWith, innerHeight } = window;
 
     let goalOne = {
         workouts: 4
@@ -441,6 +443,16 @@ function Achievements({ setAcVisi }) {
         forearms: 2,
         fullbody: 2
     }
+
+    useEffect(()=>{
+        // hide cofetti
+        if(g1 || g2 || g3 || g4){
+            setTimeout(() => {
+                setCofettiHide(false)
+            }, 5000);
+        }
+    })
+
 
     const goals = [
         "Complete personal 4 workouts",
@@ -506,6 +518,15 @@ function Achievements({ setAcVisi }) {
 
     return (
         <div className="achievements-cont">
+            {
+                (g1 || g2 || g3 || g4) &&
+                    cofettiHide && <Confetti
+                        width={innerWith}
+                        height={innerHeight}
+                        numberOfPieces={400}
+                        run={true}
+                    />
+            }
             <div className="top-head">
 
                 <div className="right">
@@ -654,6 +675,7 @@ function Achievements({ setAcVisi }) {
         </div>
     )
 }
+
 
 function StartWorkout({ setWVisi, setWorkoutsData, workoutData }) {
 

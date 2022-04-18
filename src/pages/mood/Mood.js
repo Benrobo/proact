@@ -188,7 +188,7 @@ function MoodPlayer({ mood }) {
 function FlashScreen() {
 
     return (
-        <div className="flash-screen">
+        <div className="m-flash-screen">
             <h3>Medi</h3>
             <div className="lds-facebook">
                 <div></div>
