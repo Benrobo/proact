@@ -685,10 +685,21 @@ function StartWorkout({ setWVisi, setWorkoutsData, workoutData }) {
     const [start, setStart] = useState(false);
     const [isStop, setIsStop] = useState(false);
     const [currentTime, setCurrentTime] = useState("")
+    const [hideTutor, setHideTutor] = useState(true);
     const startRef = useRef()
     const timerRef = useRef()
 
-    let counter = 0;
+    // hide tutor if it has been seen
+    useEffect(() => {
+        let tutor = localStorage.getItem("workout-tutorial")
+
+        if (tutor !== undefined || tutor !== null) {
+            const { isSeen } = JSON.parse(tutor)
+            if (isSeen === true) {
+                setHideTutor(false)
+            }
+        }
+    }, [])
 
     function startTimer() {
         // let date = new Date();
@@ -850,9 +861,95 @@ function StartWorkout({ setWVisi, setWorkoutsData, workoutData }) {
                     <br />
                 </div>
             </div>
+            {hideTutor && <StartTutorial setHideTutor={setHideTutor} />}
         </div>
     )
 }
+
+function StartTutorial({ setHideTutor }) {
+
+    const [seen, setSeen] = useState(false)
+    // const [stageName, setStageName] = useState("step1");
+    const [stepCounter, setStepCounter] = useState(1)
+
+    if (localStorage.getItem("workout-tutorial") === null) {
+        localStorage.setItem("workout-tutorial", JSON.stringify({ isSeen: false }))
+    }
+
+    let wData = JSON.parse(localStorage.getItem("workout-tutorial"));
+
+    useEffect(() => {
+        if (wData !== undefined || wData !== null) {
+            let { isSeen } = wData;
+            setSeen(isSeen)
+        }
+    }, [])
+
+    function handleStageName(e) {
+        setStepCounter((prev) => prev += 1)
+        if (stepCounter === 3) {
+            let isSeen = true;
+            localStorage.setItem("workout-tutorial", JSON.stringify({ isSeen }))
+            setHideTutor(false);
+        }
+    }
+
+    let stepsElem;
+
+    if (stepCounter === 1) {
+        stepsElem = <Step1 handleStageName={handleStageName} />
+    }
+    else if (stepCounter == 2) {
+        stepsElem = <Step2 handleStageName={handleStageName} />
+    }
+    else if (stepCounter == 3) {
+        stepsElem = <Step3 handleStageName={handleStageName} />
+    }
+
+    return (
+        <div className="start-tutor">
+            {/* steps */}
+            {stepsElem}
+        </div>
+    )
+}
+
+function Step1({ handleStageName }) {
+    return (
+        <div className="step-1 bx" data-name="step1">
+            <p>Click on start to begin the session</p>
+            <button className="btn next-btn" onClick={handleStageName}>
+                Next
+            </button>
+        </div>
+    )
+}
+
+function Step2({ handleStageName }) {
+    return (
+        <div className="step-2 bx" data-name="step2">
+            <p>Delete workout by clicking delete button</p>
+            <button className="btn next-btn" onClick={handleStageName}>
+                Next
+            </button>
+        </div>
+    )
+}
+
+function Step3({ handleStageName }) {
+    return (
+        <div className="step-3 bx" data-name="step3">
+            <p>Click this button and move to next set of the workout till each sets are completed</p>
+            <button className="btn next-btn" onClick={handleStageName}>
+                Continue Workout
+            </button>
+        </div>
+    )
+}
+
+
+
+// Workout List
 
 function WorkoutLists({ setWVisi, setWorkoutsData }) {
 
